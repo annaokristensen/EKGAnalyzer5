@@ -6,13 +6,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="EKG-Analyzer" Height="450" Width="800">
-    <Grid Height="434" VerticalAlignment="Bottom" Background="#FFDFEAF3" Loaded="Window_Loaded">
+        Title="EKG-Analyzer" Height="450" Width="800" HorizontalAlignment="Center" Loaded="Window_Loaded">
+    <Grid Height="434" VerticalAlignment="Bottom" Background="#FFDFEAF3" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="62*"/>
-            <ColumnDefinition Width="64*"/>
             <ColumnDefinition Width="137*"/>
-            <ColumnDefinition Width="77*"/>
+            <ColumnDefinition Width="62*"/>
+            <ColumnDefinition Width="134*"/>
             <ColumnDefinition Width="137*"/>
             <ColumnDefinition Width="164*"/>
             <ColumnDefinition Width="160*"/>
@@ -25,7 +25,7 @@
             <RowDefinition Height="108*"/>
             <RowDefinition Height="21*"/>
         </Grid.RowDefinitions>
-        <lvc:CartesianChart Name="EKGAnalyzer" Margin="23,23,7,43"  Background="White" Grid.Row="2" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="3">
+        <lvc:CartesianChart Name="EKGAnalyzer" Margin="23,23,7,43"  Background="White" Grid.Row="2" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="3" >
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Title="Dato" FontSize="14" LabelsRotation=" -45" Labels="{Binding XAkseDato}" />
             </lvc:CartesianChart.AxisX>
@@ -45,14 +45,14 @@
 
         </lvc:CartesianChart>
 
-        <TextBox x:Name="TBName" Grid.Row="1" Grid.Column="2" IsReadOnly="True" Margin="18,2,17,7" />
-        <Label x:Name="LabelName" Content="Navn" Grid.Row="1" Grid.Column="1" Margin="0,2,4,7" HorizontalAlignment="Right" Width="38"/>
-        <Label x:Name="LabelCPR" Content="Cpr" Grid.Row="1" Grid.Column="3" Margin="0,2,4,7" HorizontalAlignment="Right" Width="29"/>
-        <TextBox x:Name="TBCPR" Grid.Row="1" Grid.Column="4" IsReadOnly="True" Margin="18,2,17,7" />
+        <TextBox x:Name="TBName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" Margin="18,2,17,7" />
+        <Label x:Name="LabelName" Content="Navn" Grid.Row="1" Grid.Column="0" Margin="0,2,4,7" HorizontalAlignment="Right" Width="38"/>
+        <Label x:Name="LabelCPR" Content="Cpr" Grid.Row="1" Grid.Column="2" Margin="0,2,4,7" HorizontalAlignment="Right" Width="29"/>
+        <TextBox x:Name="TBCPR" Grid.Row="1" Grid.Column="3" IsReadOnly="True" Margin="18,2,17,7" />
         <Label x:Name="LabelMaaling" Content="Måletidspunkt" Grid.Row="1" Grid.Column="5" Margin="0,2,0,7" HorizontalAlignment="Right" Width="86"/>
         <TextBox x:Name="TBMaaling" Grid.Row="1" Grid.Column="6" IsReadOnly="True" Margin="18,2,17,7"/>
         <Label x:Name="LabelAnalyse" Content="Analysesvar" Grid.Row="2" Grid.Column="6" Margin="0,2,0,7" HorizontalAlignment="Center" Width="86"/>
-        <TextBox x:Name="TBAnalyse" Grid.Row="3" Grid.Column="6" IsReadOnly="True" Margin="18,2,17,7"/>
+        <TextBox x:Name="TBAnalyse" Grid.Row="3" Grid.Column="6" IsReadOnly="True" Margin="18,2,17,7" TextAlignment="Center"/>
         <Button x:Name="ButtonSend" Content="Send måling" Grid.Column="6" Grid.Row="4" Height="50" Width="100" ></Button>
 
     </Grid>

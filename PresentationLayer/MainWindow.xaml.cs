@@ -23,6 +23,7 @@ namespace PresentationLayer
     {
         private FPWindow findPatientW;
         private EKGController ekgObject;
+        private string cpr;
         public bool PatientOK { get; set; }
 
         public MainWindow()
@@ -36,14 +37,23 @@ namespace PresentationLayer
 
         }
 
+        public string CPRNumber
+        {
+            get { return cpr; }
+            set { cpr = value;
+                TBCPR.Text = value;
+            }
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Hide();
+            this.Hide();
+
             findPatientW.ShowDialog();
             //den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
             if (PatientOK == true)
             {
-                Show();
+                this.Show();
             }
             else
             {

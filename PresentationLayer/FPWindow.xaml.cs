@@ -35,7 +35,14 @@ namespace PresentationLayer
 
         private void ButtonHent_Click(object sender, RoutedEventArgs e)
         {
-
+            bool patient = eKGcontrole.CPRTyped(TBCPR.Text);
+            {
+                if (patient == true)
+                {
+                    mainW.PatientOK = true;
+                    Close();
+                }
+            }
         }
     }
 }

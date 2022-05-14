@@ -13,5 +13,17 @@ namespace DataLayer
         {
             return new EKG(new List<double>(), 12, new Patient("1111111", "Ida"), DateTime.Now);
         }
+
+        public bool isUserRegistered(string cpr)
+        {
+            bool result = false;
+
+            if(cpr == "123456789")
+            {
+                result = true;
+            }
+
+            return result;
+        }
     }
 }
