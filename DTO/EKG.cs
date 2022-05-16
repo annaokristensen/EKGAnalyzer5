@@ -7,15 +7,15 @@ namespace DTO
     {
         public List<double> EKGsamples { get; set; }
         public double MeasurementPeriod { get; set; }
-        public Patient patient { get; set; }
+        public string CPR { get; set; }
 
         public DateTime MeasurementTime{ get; set; }
 
-        public EKG(List<double> ekgSamples, double measurementPeriod, Patient patient, DateTime measurementTime)
+        public EKG(List<double> ekgSamples, double measurementPeriod, string cpr, DateTime measurementTime)
         {
             EKGsamples = ekgSamples;
             MeasurementPeriod = measurementPeriod;
-            this.patient = patient;
+            CPR = cpr;
             MeasurementTime = measurementTime;
         }
     }
