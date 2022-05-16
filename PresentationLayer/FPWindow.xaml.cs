@@ -35,11 +35,12 @@ namespace PresentationLayer
 
         private void ButtonHent_Click(object sender, RoutedEventArgs e)
         {
-            bool patient = eKGcontrole.CPRTyped(TBCPR.Text);
+            bool patient = eKGcontrole.CPRTyped(TBCPR1.Text);
             {
                 if (patient == true)
                 {
                     mainW.PatientOK = true;
+                    mainW.Cpr = TBCPR1.Text;
                     Close();
                 }
             }

@@ -30,7 +30,7 @@
                 <lvc:Axis Title="Dato" FontSize="14" LabelsRotation=" -45" Labels="{Binding XAkseDato}" />
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="kolsterolværdier [mmol/L]"  FontSize="14"/>
+                <lvc:Axis Title="måling"  FontSize="14"/>
             </lvc:CartesianChart.AxisY>
             <lvc:CartesianChart.Series>
                 <lvc:LineSeries Title="Total" PointForeground="Orange" Fill="Transparent" Stroke="Orange" Values="{Binding YAkseTotal}">
@@ -45,10 +45,8 @@
 
         </lvc:CartesianChart>
 
-        <TextBox x:Name="TBName" Grid.Row="1" Grid.Column="1" IsReadOnly="True" Margin="18,2,17,7" />
-        <Label x:Name="LabelName" Content="Navn" Grid.Row="1" Grid.Column="0" Margin="0,2,4,7" HorizontalAlignment="Right" Width="38"/>
-        <Label x:Name="LabelCPR" Content="Cpr" Grid.Row="1" Grid.Column="2" Margin="0,2,4,7" HorizontalAlignment="Right" Width="29"/>
-        <TextBox x:Name="TBCPR" Grid.Row="1" Grid.Column="3" IsReadOnly="True" Margin="18,2,17,7" />
+        <Label x:Name="LabelCPR" Content="Cpr" Grid.Row="1" Grid.Column="0" Margin="0,2,4,7" HorizontalAlignment="Right" Width="29"/>
+        <TextBox x:Name="TBCPR2" Grid.Row="1" Grid.Column="1" IsReadOnly="True" Margin="18,2,17,7" />
         <Label x:Name="LabelMaaling" Content="Måletidspunkt" Grid.Row="1" Grid.Column="5" Margin="0,2,0,7" HorizontalAlignment="Right" Width="86"/>
         <TextBox x:Name="TBMaaling" Grid.Row="1" Grid.Column="6" IsReadOnly="True" Margin="18,2,17,7"/>
         <Label x:Name="LabelAnalyse" Content="Analysesvar" Grid.Row="2" Grid.Column="6" Margin="0,2,0,7" HorizontalAlignment="Center" Width="86"/>
