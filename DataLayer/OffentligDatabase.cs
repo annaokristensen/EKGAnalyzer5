@@ -39,10 +39,12 @@ namespace DataLayer
 
             using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnectionST))
             {
-                cmd.Parameters.AddWithValue("@starttid", starttid); //ER DET HER RIGTIGT??!!
+                cmd.Parameters.AddWithValue("@starttid", starttid); 
+                                                    //ER DET HER RIGTIGT??!!
                 // Get your parameters ready
                 cmd.Parameters.AddWithValue("@data", data.ToArray().SelectMany(value => BitConverter.GetBytes(value)).ToArray());
-                long id = (long)cmd.ExecuteScalar(); //Returns the identity of the new tuple/record 64 bit/8 bytes //HVad gør det her?
+                long id = (long)cmd.ExecuteScalar(); //Returns the identity of the new tuple/record 64 bit/8 bytes
+                                                     ////HVad gør det her?
             }
 
             string insertStringParam2 =
