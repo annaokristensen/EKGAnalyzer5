@@ -41,6 +41,7 @@ namespace PresentationLayer
                 {
                     mainW.PatientOK = true;
                     mainW.Cpr = TBCPR1.Text;
+                    mainW.Laegehus = TBLaegehus1.Text;
                     Close();
                 }
             }

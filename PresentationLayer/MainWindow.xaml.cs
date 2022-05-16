@@ -24,6 +24,7 @@ namespace PresentationLayer
         private FPWindow findPatientW;
         private EKGController ekgObject;
         private string cpr;
+        private string laegehus;
         public bool PatientOK { get; set; }
 
         public MainWindow()
@@ -33,6 +34,7 @@ namespace PresentationLayer
             ekgObject = new EKGController();
             findPatientW = new FPWindow(this, ekgObject);
             TBCPR2.Text = cpr;
+            TBLaegehus2.Text = laegehus;
 
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
@@ -45,6 +47,14 @@ namespace PresentationLayer
                 cpr = value;
                 TBCPR2.Text= value;
 
+            }
+        }
+
+        public string Laegehus
+        {
+            get { return laegehus; }
+            set { laegehus = value;
+                TBLaegehus2.Text = value;
             }
         }
 

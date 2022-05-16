@@ -8,21 +8,35 @@
         Title="Find Patient" Height="250" Width="418" Background="#FFDFEAF3">
     <Grid HorizontalAlignment="Right" Margin="-63,0,-72.667,-0.333" Width="547">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="51*"/>
-            <RowDefinition Height="90*"/>
+            <RowDefinition Height="0*"/>
+            <RowDefinition Height="28*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="28*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="97*"/>
-            <ColumnDefinition Width="114*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="126*"/>
             <ColumnDefinition Width="120*"/>
-            <ColumnDefinition Width="216*"/>
+            <ColumnDefinition Width="142*"/>
+            <ColumnDefinition Width="74*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="TBCPR1" HorizontalAlignment="Center" Height="28" Margin="0.333,9,215.667,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="1" FontSize="15" TextAlignment="Center"/>
+        <TextBox x:Name="TBCPR1" HorizontalAlignment="Center" Height="28" Margin="0.333,6,141.667,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Grid.Column="3" Grid.Row="5" FontSize="15" TextAlignment="Center"/>
+        <TextBox x:Name="TBNR" HorizontalAlignment="Center" Height="28" Margin="0.333,6.667,141.667,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Grid.Column="3" Grid.Row="3" FontSize="15" TextAlignment="Center"/>
+        <TextBox x:Name="TBLaegehus1" HorizontalAlignment="Center" Height="28" Margin="0.333,9,141.667,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2" Grid.Column="3" Grid.Row="2" FontSize="15" TextAlignment="Center"/>
 
-        <Label Content="CPR-nummer:" HorizontalAlignment="Left" Margin="0.333,7,0,0" VerticalAlignment="Top" FontSize="15" Height="30" Width="114" Grid.Column="1" FontWeight="Bold" Grid.ColumnSpan="2" Foreground="#FF3C3A3A" Grid.Row="1"/>
+        <Label Content="CPR-nummer:" HorizontalAlignment="Left" Margin="0.333,4,0,0" VerticalAlignment="Top" FontSize="15" Height="30" Width="114" Grid.Column="2" FontWeight="Bold" Foreground="#FF3C3A3A" Grid.Row="5"/>
 
-        <Button x:Name="ButtonHent" Content="Hent måling" VerticalAlignment="Top" Height="28" Background="#FFBBC4CA"  Margin="2.333,22,1.667,0" Click="ButtonHent_Click" Grid.Column="2" HorizontalAlignment="Center" Foreground="#FF3C3A3A" FontSize="15" FontWeight="Bold" Grid.Row="2" />
+        <Button x:Name="ButtonHent" Content="Hent måling" VerticalAlignment="Top" Height="28" Background="#FFBBC4CA"  Margin="9.333,10.333,18.667,0" Click="ButtonHent_Click" Grid.Column="3" HorizontalAlignment="Center
+                " Foreground="#FF3C3A3A" FontSize="15" FontWeight="Bold" Grid.Row="6" Width="92" />
+        <Label Content="Medarbejdernr:" HorizontalAlignment="Left" Margin="2.333,4.667,0,0" VerticalAlignment="Top" FontSize="15" Height="30" Width="124" FontWeight="Bold" Foreground="#FF3C3A3A" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Label Content="Lægehus:" HorizontalAlignment="Left" Margin="0.333,6,0,0" VerticalAlignment="Top" FontSize="15" Height="30" Width="114" Grid.Column="2" FontWeight="Bold" Foreground="#FF3C3A3A" Grid.Row="2"/>
+        <Label Content="       Læge" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="6" Width="416" FontSize="12" FontWeight="Bold" Foreground="#FF4B4646" Background="LightSteelBlue" Height="27" Grid.RowSpan="2" Margin="57,0,0,0"/>
+        <Label Content="       Patient" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="6" Width="416" FontSize="12" FontWeight="Bold" Foreground="#FF4B4646" Background="LightSteelBlue" Margin="57,1,0,0" Height="27" Grid.Row="4"/>
 
 
 
