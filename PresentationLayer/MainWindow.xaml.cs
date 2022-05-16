@@ -32,16 +32,19 @@ namespace PresentationLayer
 
             ekgObject = new EKGController();
             findPatientW = new FPWindow(this, ekgObject);
+            TBCPR2.Text = cpr;
 
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
         }
 
-        public string CPRNumber
+        public string Cpr
         {
             get { return cpr; }
-            set { cpr = value;
-                TBCPR.Text = value;
+            set {
+                cpr = value;
+                TBCPR2.Text= value;
+
             }
         }
 
