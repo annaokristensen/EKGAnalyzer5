@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace DataLayer
 {
-    class OffentligDatabase
+    public class OffentligDatabase
     {
         private SqlConnection connection;
     }
