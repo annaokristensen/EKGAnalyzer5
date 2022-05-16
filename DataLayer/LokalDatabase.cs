@@ -11,7 +11,7 @@ namespace DataLayer
     {
         public EKG GetEKG()
         {
-            return new EKG(new List<double>(), 12, new Patient("1111111", "Ida"), DateTime.Now);
+            return new EKG(new List<double>(), 12, "1111111", DateTime.Now);
         }
 
         public bool isUserRegistered(string cpr)
