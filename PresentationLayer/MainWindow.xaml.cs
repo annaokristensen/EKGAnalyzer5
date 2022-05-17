@@ -26,7 +26,7 @@ namespace PresentationLayer
         private CMWindow chooseMeassurementW;
         private string cpr;
         private string laegehus;
-        public bool PatientOK { get; set; }
+        //public bool PatientOK { get; set; }
 
         //public bool SeveralDateTimes { get; set; }
 
@@ -67,39 +67,28 @@ namespace PresentationLayer
         {
             this.Hide();
 
-            findPatientW.ShowDialog();
+            //findPatientW.ShowDialog();
+            ////den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
+
+
+            //    if (PatientOK == true)
+            //    {
+
+            //        chooseMeassurementW.ShowDialog();
+            //    }
+            //    else
+            //    {
+
+            //        chooseMeassurementW.Close();
+            //    }
+
+
+            chooseMeassurementW.ShowDialog();
             //den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
 
-            //if (SeveralDateTimes == true)
-            {
-                if (PatientOK == true)
-                {
-                    
-                    chooseMeassurementW.ShowDialog();
-                }
-                else
-                {
-                    
-                    chooseMeassurementW.Close();
-                }
-            }
-            //else
-            //{
-            //    if(PatientOK == true)
-            //    {
-            //        this.Show();
 
-            //    }
 
-            //    else 
-            //    { 
-            //        Close(); 
-                
-            //    }
-            //}
 
-            
-           
         }
     }
 }

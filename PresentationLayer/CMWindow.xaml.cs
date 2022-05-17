@@ -23,6 +23,7 @@ namespace PresentationLayer
         private MainWindow mainW;
         private EKGController eKGcontrole;
         private FPWindow findPatientW;
+        public bool PatientOK { get; set; }
         public CMWindow()
         {
             InitializeComponent();
@@ -33,8 +34,10 @@ namespace PresentationLayer
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //når hent button trykkes, åbnes den valgte måling
-
-            Close();
+            this.Hide();
+            mainW = new MainWindow();
+            mainW.ShowDialog();
+            Show();
 
             
         }
