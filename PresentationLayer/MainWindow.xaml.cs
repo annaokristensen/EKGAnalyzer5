@@ -23,9 +23,12 @@ namespace PresentationLayer
     {
         private FPWindow findPatientW;
         private EKGController ekgObject;
+        private CMWindow chooseMeassurementW;
         private string cpr;
         private string laegehus;
-        public bool PatientOK { get; set; }
+        //public bool PatientOK { get; set; }
+
+        //public bool SeveralDateTimes { get; set; }
 
         public MainWindow()
         {
@@ -33,6 +36,8 @@ namespace PresentationLayer
 
             ekgObject = new EKGController();
             findPatientW = new FPWindow(this, ekgObject);
+            chooseMeassurementW = new CMWindow();
+
             TBCPR2.Text = cpr;
             TBLaegehus2.Text = laegehus;
 
@@ -62,16 +67,28 @@ namespace PresentationLayer
         {
             this.Hide();
 
-            findPatientW.ShowDialog();
+            //findPatientW.ShowDialog();
+            ////den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
+
+
+            //    if (PatientOK == true)
+            //    {
+
+            //        chooseMeassurementW.ShowDialog();
+            //    }
+            //    else
+            //    {
+
+            //        chooseMeassurementW.Close();
+            //    }
+
+
+            chooseMeassurementW.ShowDialog();
             //den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
-            if (PatientOK == true)
-            {
-                this.Show();
-            }
-            else
-            {
-                Close();
-            }
+
+
+
+
         }
     }
 }

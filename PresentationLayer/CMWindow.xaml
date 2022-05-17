@@ -1,0 +1,13 @@
+﻿<Window x:Class="PresentationLayer.CMWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        mc:Ignorable="d"
+        Title="CMWindow" Height="450" Width="800">
+    <Grid>
+        <Button Content="Hent måling" Name="ButtonCMHent" HorizontalAlignment="Left" Margin="334,356,0,0" VerticalAlignment="Top" Width="100" Height="34" Click="Button_Click"/>
+        <ListBox HorizontalAlignment="Left" Height="100" Margin="159,124,0,0" VerticalAlignment="Top" Width="100"/>
+    </Grid>
+</Window>
