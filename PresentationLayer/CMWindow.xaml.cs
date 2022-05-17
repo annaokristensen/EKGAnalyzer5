@@ -33,13 +33,19 @@ namespace PresentationLayer
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //når hent button trykkes, åbnes den valgte måling
-            this.Hide();
-            mainW = new MainWindow();
-            mainW.ShowDialog();
-            Show();
+            // Tjekker om vi har valgt en måling, før vi lukker dette window.
 
-            
+            // SKal mainWindow mainW have noget props som ændres på baggrund af nogle valg fra denne side.
+            // Hvis dette er korrekt, så kalder vi Close();
+            // Nu åbnes main window igen.
+
+
+            //når hent button trykkes, åbnes den valgte måling
+            //this.Hide();
+            //mainW = new MainWindow();
+            //mainW.ShowDialog();
+            Close();
+
         }
     }
 }

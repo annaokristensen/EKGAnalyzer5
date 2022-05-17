@@ -22,7 +22,7 @@ namespace PresentationLayer
     {
         private MainWindow mainW;
         private EKGController eKGcontrole;
-        
+
         public FPWindow(MainWindow mainW, EKGController eKGcontrole)
         {
             InitializeComponent();
@@ -36,15 +36,15 @@ namespace PresentationLayer
         private void ButtonHent_Click(object sender, RoutedEventArgs e)
         {
             bool patient = eKGcontrole.CPRTyped(TBCPR1.Text);
+
+            if (patient == true)
             {
-                if (patient == true)
-                {
-                    mainW.PatientOK = true;
-                    mainW.Cpr = TBCPR1.Text;
-                    mainW.Laegehus = TBLaegehus1.Text;
-                    Close();
-                }
+                mainW.PatientOK = true;
+                mainW.Cpr = TBCPR1.Text;
+                mainW.Laegehus = TBLaegehus1.Text;
+                Close();
             }
+
         }
     }
 }
