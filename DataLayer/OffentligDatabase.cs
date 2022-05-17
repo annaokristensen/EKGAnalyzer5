@@ -23,7 +23,7 @@ namespace DataLayer
         {
             get
             {
-                var con = new SqlConnection(@"Data Source=BBLAP18\SQLEXPRESS;Initial Catalog=EKG_Offentlig;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                var con = new SqlConnection(@"Data Source = BBLAP18\SQLEXPRESS;Initial Catalog=EKG_Offentlig;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                 con.Open();
                 return con;
             }
@@ -31,7 +31,7 @@ namespace DataLayer
         public void SendToDatabase(EKG ekg, Læge læge)
         {
 
-            string insertStringParam = @"INSERT INTO EKGDATA (raa_data, ekgmaaleid, samplerate_hz, interval_sec, data_format, bin_eller_tekst, maaleformat_type, start_tid) OUTPUT INSERTED.ekgdataid VALUES(@data, 164, 400, 3600, N'2015-04-27', '1', N'double', CONVERT(DATETIME, @starttid, 102))"; //Datetime, 102???
+            string insertStringParam = @"INSERT INTO dbo.EKGDATA (raa_data, ekgmaaleid, samplerate_hz, interval_sec, data_format, bin_eller_tekst, maaleformat_type, start_tid) OUTPUT INSERTED.ekgdataid  VALUES(@data, 164, 400, 3600, N'2015-04-27', '1', N'double', CONVERT(DATETIME, '2015-04-27 12:34:43', 102))"; 
             
             List<double> data = ekg.EKGsamples;
             DateTime starttid = ekg.MeasurementTime;
@@ -44,11 +44,11 @@ namespace DataLayer
                 // Get your parameters ready
                 cmd.Parameters.AddWithValue("@data", data.ToArray().SelectMany(value => BitConverter.GetBytes(value)).ToArray());
                 long id = (long)cmd.ExecuteScalar(); //Returns the identity of the new tuple/record 64 bit/8 bytes
-                                                     ////HVad gør det her?
+                                                         //HVad gør det her?
             }
 
             string insertStringParam2 =
-                @"INSERT INTO EKGMAELING (ekgmaaleid, dato, antalmaalinger, sfp_ansvrmedarbjnr, sfp_ans_org, borger_cprnr) OUTPUT INSERTED.ekgmaaleid VALUES(164, @dato, @Id, @org, @cpr)";
+                @"INSERT INTO EKGMAELING (ekgmaaleid, dato, antalmaalinger, sfp_ansvrmedarbjnr, sfp_ans_org, borger_cprnr) OUTPUT INSERTED.ekgmaaleid VALUES(1, @dato, 2, @Id, @org, @cpr)";
             DateTime dato = ekg.MeasurementTime;
             string cpr = ekg.CPR;
             string org = læge.Organisation;
