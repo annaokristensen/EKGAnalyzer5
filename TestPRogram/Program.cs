@@ -33,7 +33,7 @@ namespace TestPRogram
 
             LokalDatabase lokalDatabase = new LokalDatabase();
 
-            EKG ekg = lokalDatabase.GetEKG("1234567890");
+            EKG ekg = lokalDatabase.GetEKG("1234567890", new DateTime(1900,01,01));
             Console.WriteLine(ekg.CPR);
         }
     }

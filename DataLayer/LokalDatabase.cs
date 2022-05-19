@@ -26,19 +26,20 @@ namespace DataLayer
                 return con;
             }
         }
-        public EKG GetEKG(string CPR)
+        public EKG GetEKG(string CPR,DateTime dt)
         {
             EKG ekg = new EKG();
 
             //CPR
             ekg.CPR = CPR;
+            ekg.MeasurementTime = dt;
 
 
             //BLOB laves til liste
             byte[] bytesArr = new byte[800];
             List<double> list = new List<double>();
             SqlDataReader rdr;
-            string selectString = "Select * from dbo.EKGLokal where cpr_borger = " + CPR;
+            string selectString = "Select * from dbo.EKGLokal where (cpr_borger = " + CPR + ") AND (start_tid = " + dt + ")"; //datetime er ikke rigtigt
             using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
             {
                 rdr = cmd.ExecuteReader();
