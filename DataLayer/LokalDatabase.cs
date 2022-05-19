@@ -39,7 +39,7 @@ namespace DataLayer
             byte[] bytesArr = new byte[800];
             List<double> list = new List<double>();
             SqlDataReader rdr;
-            string selectString = "Select * from dbo.EKGLokal where (cpr_borger = " + CPR + ") AND (start_tid = " + dt + ")"; //datetime er ikke rigtigt
+            string selectString = "Select * from dbo.EKGLokal where (cpr_borger = " + CPR + ") AND (start_tid = '1 Jan 1900'"; //datetime er ikke rigtigt
             using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
             {
                 rdr = cmd.ExecuteReader();
