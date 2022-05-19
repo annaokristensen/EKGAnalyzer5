@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="CMWindow" Height="450" Width="800">
-    <Grid Loaded="CMWindow_Loaded">
-        <Button Content="Hent måling" Name="ButtonCMHent" HorizontalAlignment="Left" Margin="334,356,0,0" VerticalAlignment="Top" Width="100" Height="34" Click="ButtonCMHent_Click" />
-        <ListBox Name="ListboxCM" HorizontalAlignment="Left" Height="189" Margin="60,80,0,0" VerticalAlignment="Top" Width="152"/>
+        Title="CMWindow" Height="450" Width="450">
+    <Grid Loaded="CMWindow_Loaded" Background="#FFDFEAF3">
+        <Button Content="Hent måling" Name="ButtonCMHent" HorizontalAlignment="Left" Margin="176,349,0,0" VerticalAlignment="Top" Width="100" Height="34" Click="ButtonCMHent_Click" />
+        <ListBox Name="ListboxCM" HorizontalAlignment="Left" Height="189" Margin="119,119,0,0" VerticalAlignment="Top" Width="210"/>
+        <TextBox Name="TBCPRCM"  HorizontalAlignment="Left" Height="26" Margin="86,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="CPR:" HorizontalAlignment="Left" Margin="34,38,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fortagne målinger:" HorizontalAlignment="Left" Margin="119,88,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
