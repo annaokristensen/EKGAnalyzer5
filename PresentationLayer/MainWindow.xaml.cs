@@ -21,11 +21,13 @@ namespace PresentationLayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private FPWindow findPatientW;
+        //private FPWindow findPatientW;
         private EKGController ekgObject;
-        private CMWindow chooseMeassurementW;
+        /*rivate CMWindow chooseMeassurementW;*/
         private string cpr;
         private string laegehus;
+        private string dato;
+
         public bool PatientOK { get; set; }
 
         //public bool SeveralDateTimes { get; set; }
@@ -35,8 +37,8 @@ namespace PresentationLayer
             InitializeComponent();
 
             ekgObject = new EKGController();
-            findPatientW = new FPWindow(this, ekgObject);
-            chooseMeassurementW = new CMWindow();
+            //findPatientW = new FPWindow(this, ekgObject);
+            //chooseMeassurementW = new CMWindow();
 
             TBCPR2.Text = cpr;
             TBLaegehus2.Text = laegehus;
@@ -48,17 +50,28 @@ namespace PresentationLayer
         public string Cpr
         {
             get { return cpr; }
-            set {
+            set
+            {
                 cpr = value;
-                TBCPR2.Text= value;
+                TBCPR2.Text = value;
 
             }
         }
 
+        public string Dato
+        {
+            get => dato; set
+            {
+                dato = value;
+                TBMaaling.Text = value;
+            }
+        }
         public string Laegehus
         {
             get { return laegehus; }
-            set { laegehus = value;
+            set
+            {
+                laegehus = value;
                 TBLaegehus2.Text = value;
             }
         }
@@ -66,16 +79,21 @@ namespace PresentationLayer
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.Hide();
-
+            var findPatientW = new FPWindow(this, ekgObject);
             findPatientW.ShowDialog();
-
 
             //den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
 
 
             if (PatientOK == true)
             {
+                var chooseMeassurementW = new CMWindow(this, ekgObject);
+
                 chooseMeassurementW.ShowDialog();
+                if (string.IsNullOrEmpty(Dato))
+                {
+                    Close();
+                }
 
             }
             else
@@ -83,8 +101,8 @@ namespace PresentationLayer
 
                 Close();
             }
-            this.ShowDialog();
-
+            //this.ShowDialog();
+            Show();
             //chooseMeassurementW.ShowDialog();
             //den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
 

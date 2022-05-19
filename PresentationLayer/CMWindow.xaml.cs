@@ -22,23 +22,22 @@ namespace PresentationLayer
     /// </summary>
     public partial class CMWindow : Window
     {  
-        public event EventHandler Click;
+       
         public object SelectedItem { get; set; }
-        private MainWindow mainW;
+       
         private EKGController eKGcontrole;
-        private FPWindow findPatientW;
-        
+       
+        private MainWindow mainWindow;
+        private EKGController ekgObject;
+
         public bool PatientOK { get; set; }
-        public CMWindow()
+      
+
+        public CMWindow(MainWindow mainWindow, EKGController ekgObject)
         {
             InitializeComponent();
-            this.eKGcontrole = eKGcontrole;
-            this.mainW = mainW;
-           
-            
-            
-
-            
+            this.mainWindow = mainWindow;
+            this.ekgObject = ekgObject;
         }
 
         private void addToListbox()
@@ -50,6 +49,8 @@ namespace PresentationLayer
 
         private void ButtonCMHent_Click(object sender, RoutedEventArgs e)
         {
+            mainWindow.Dato =
+            (string)ListboxCM.SelectedValue;
 
             //mainW.ShowDialog();
             //string item = ListboxCM.SelectedItem.ToString();
@@ -71,6 +72,7 @@ namespace PresentationLayer
 
         private void CMWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            //Vi kalder metoden fra vores logiklag (en list med datoerne for målingerne på patienten). Laver en for løkke, hvor vi adder datorerme. for loop som tilføjer en dato af typen string
 
             ListboxCM.Items.Add("item1");
             ListboxCM.Items.Add("item2");
