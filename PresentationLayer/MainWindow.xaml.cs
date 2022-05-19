@@ -68,6 +68,8 @@ namespace PresentationLayer
             this.Hide();
 
             findPatientW.ShowDialog();
+
+
             //den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
 
 
@@ -81,7 +83,7 @@ namespace PresentationLayer
 
                 Close();
             }
-            Show();
+            this.ShowDialog();
 
             //chooseMeassurementW.ShowDialog();
             //den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
