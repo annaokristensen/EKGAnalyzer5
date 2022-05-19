@@ -11,6 +11,7 @@ namespace DataLayer
     public class LokalDatabase
     {
         private SqlConnection connection;
+        private SqlDataReader reader;
         private SqlCommand command;
         private const string db = "EKG_Lokal";
         public LokalDatabase()
@@ -70,14 +71,29 @@ namespace DataLayer
 
         public bool isUserRegistered(string cpr)
         {
-            bool result = false;
 
-            if(cpr == "123456789")
-            {
-                result = true;
+            //SqlConnection er typen til variablen conn. Er fundet ved at skrive var conn, inden. 
+            SqlConnection con = connection; //tager fat i connection under proppertyen, så vi holder fast i den samme connection. Vi sender den connection ind til vores Sqlcommand.
+            command = new SqlCommand($"Select * from EKGLokal Where cpr_borger = '{cpr}' ", con); //Her ligger min forespørgelse. $ er en template streng, der gør at vi kan skrive midt i strengen.
+            bool isUserFound = false; // bool, fordi det er retur værdien i en metoden ovenfor. 
+            
+            reader = command.ExecuteReader();
+            if (reader.Read()) { //Read metoden returnere selv om den er true eller false. 
+                isUserFound = true;
             }
 
-            return result;
+            con.Close();
+            return isUserFound;
+
+            //bool result = false;
+
+            //if (cpr == "123456789") {
+            //    result = true;
+            //}
+
+            //return result;
         }
+
+        //select Dato 
     }
 }
