@@ -20,21 +20,27 @@ namespace TestPRogram
             liste.Add(1); 
             liste.Add(1);
 
-            //EKG ekg = new EKG(liste, 12, "1234567890", new DateTime(1929, 12, 12));
-            //Læge læge = new Læge("Lægerne", "1234");
-
-            //OffentligDatabase offentligDatabase = new OffentligDatabase();
-
 
             
-            //offentligDatabase.SendToDatabase(ekg,læge);
+            
 
 
 
             LokalDatabase lokalDatabase = new LokalDatabase();
 
-            EKG ekg = lokalDatabase.GetEKG("1234567890", new DateTime(1900,01,01));
-            Console.WriteLine(ekg.CPR);
+            //EKG ekg = lokalDatabase.GetEKG("1234567890", new DateTime(1900,01,01));
+
+            EKG ekg1 = new EKG(liste, 2, 2, "x", "x", "x", "1234567890", new DateTime(2000, 1, 1));
+
+            Console.WriteLine(ekg1.CPR);
+            
+            Læge læge = new Læge("Lægerne", "1234");
+
+            OffentligDatabase offentligDatabase = new OffentligDatabase();
+
+            offentligDatabase.SendToDatabase(ekg1, læge);
+
+
         }
     }
 }
