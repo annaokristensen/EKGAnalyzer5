@@ -32,7 +32,6 @@ namespace PresentationLayer
 
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
-
         private void ButtonHent_Click(object sender, RoutedEventArgs e)
         {
             bool patient = eKGcontrole.CPRTyped(TBCPR1.Text);

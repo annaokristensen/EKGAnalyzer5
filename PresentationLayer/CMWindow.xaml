@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
         Title="CMWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Hent måling" Name="ButtonCMHent" HorizontalAlignment="Left" Margin="334,356,0,0" VerticalAlignment="Top" Width="100" Height="34" Click="Button_Click"/>
-        <ListBox HorizontalAlignment="Left" Height="100" Margin="159,124,0,0" VerticalAlignment="Top" Width="100"/>
+    <Grid Loaded="CMWindow_Loaded">
+        <Button Content="Hent måling" Name="ButtonCMHent" HorizontalAlignment="Left" Margin="334,356,0,0" VerticalAlignment="Top" Width="100" Height="34" Click="ButtonCMHent_Click" />
+        <ListBox Name="ListboxCM" HorizontalAlignment="Left" Height="189" Margin="60,80,0,0" VerticalAlignment="Top" Width="152"/>
     </Grid>
 </Window>

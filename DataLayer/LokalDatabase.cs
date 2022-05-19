@@ -22,7 +22,7 @@ namespace DataLayer
             get
             {
                 var con = new SqlConnection($@"Data Source=BBLAP18\SQLEXPRESS;Initial Catalog=EKG_Lokal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-                con.Open();
+                con.Open(); 
                 return con;
             }
         }

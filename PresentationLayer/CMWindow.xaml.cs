@@ -13,26 +13,48 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using LogicLayer;
 
+
 namespace PresentationLayer
 {
+   
     /// <summary>
     /// Interaction logic for CMWindow.xaml
     /// </summary>
     public partial class CMWindow : Window
-    {
-        private MainWindow mainW;
+    {  
+       
+        public object SelectedItem { get; set; }
+       
         private EKGController eKGcontrole;
-        private FPWindow findPatientW;
+       
+        private MainWindow mainWindow;
+        private EKGController ekgObject;
+
         public bool PatientOK { get; set; }
-        public CMWindow()
+      
+
+        public CMWindow(MainWindow mainWindow, EKGController ekgObject)
         {
             InitializeComponent();
-            this.eKGcontrole = eKGcontrole;
+            this.mainWindow = mainWindow;
+            this.ekgObject = ekgObject;
+        }
+
+        private void addToListbox()
+        {
+            //ListBox cm = new ListboxCM();
+            //cm.Items.Add("item");
             
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonCMHent_Click(object sender, RoutedEventArgs e)
         {
+            mainWindow.Dato =
+            (string)ListboxCM.SelectedValue;
+
+            //mainW.ShowDialog();
+            //string item = ListboxCM.SelectedItem.ToString();
+
             // Tjekker om vi har valgt en måling, før vi lukker dette window.
 
             // SKal mainWindow mainW have noget props som ændres på baggrund af nogle valg fra denne side.
@@ -40,12 +62,21 @@ namespace PresentationLayer
             // Nu åbnes main window igen.
 
 
+
             //når hent button trykkes, åbnes den valgte måling
             //this.Hide();
             //mainW = new MainWindow();
             //mainW.ShowDialog();
             Close();
+        }
 
+        private void CMWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Vi kalder metoden fra vores logiklag (en list med datoerne for målingerne på patienten). Laver en for løkke, hvor vi adder datorerme. for loop som tilføjer en dato af typen string
+
+            ListboxCM.Items.Add("item1");
+            ListboxCM.Items.Add("item2");
+            
         }
     }
 }
