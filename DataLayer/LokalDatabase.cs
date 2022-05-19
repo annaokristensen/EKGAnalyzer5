@@ -21,7 +21,7 @@ namespace DataLayer
         {
             get
             {
-                var con = new SqlConnection(@"Data Source=BBLAP18\SQLEXPRESS;Initial Catalog=EKG_Lokal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                var con = new SqlConnection($@"Data Source=BBLAP18\SQLEXPRESS;Initial Catalog=EKG_Lokal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                 con.Open();
                 return con;
             }
@@ -39,26 +39,28 @@ namespace DataLayer
             List<double> list = new List<double>();
             SqlDataReader rdr;
             string selectString = "Select * from dbo.EKGLokal where cpr_borger = " + CPR;
-            using (SqlCommand cmd = new SqlCommand(selectString, connection))
+            using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
             {
                 rdr = cmd.ExecuteReader();
-                if (rdr.Read())
+                while (rdr.Read())
+                {
                     bytesArr = (byte[])rdr["raa_data"];
+                }
                 for (int i = 0, j = 0; i < bytesArr.Length; i += 8, j++)
-                    list.Add(BitConverter.ToDouble(bytesArr, i)); 
+                    list.Add(BitConverter.ToDouble(bytesArr, i));
             }
 
             ekg.EKGsamples = list;
 
             //Resten af informationerne udtrækkes
-            using (SqlCommand cmd = new SqlCommand(selectString, connection))
+            using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
             {
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
                 {
                     ekg.BinEllerTekst = Convert.ToString(rdr["bin_eller_tekst"].ToString());
-                    ekg.IntervalSec = Convert.ToInt32((int)rdr["interval_sec"]);
-                    ekg.SampleRate = Convert.ToDouble((float)rdr["samplerate_hz"]);
+                    ekg.IntervalSec = Convert.ToInt32(rdr["interval_sec"]);
+                    ekg.SampleRate = Convert.ToDouble(rdr["samplerate_hz"]);
                     ekg.DataFormat = Convert.ToString(rdr["data_format"].ToString());
                     ekg.Maaleformat_type = Convert.ToString(rdr["maaleformat_type"].ToString());
                     ekg.MeasurementTime = Convert.ToDateTime((DateTime)rdr["start_tid"]);
