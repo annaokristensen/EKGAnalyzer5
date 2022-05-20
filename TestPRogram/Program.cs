@@ -30,6 +30,13 @@ namespace TestPRogram
 
             Console.WriteLine(ekg.DataFormat);
 
+            Console.WriteLine();
+
+            foreach (var dt in lokalDatabase.GetDateTimes(ekg.CPR))
+            {
+                Console.WriteLine(Convert.ToString(dt));
+            }
+            Console.ReadLine();
             //Læge læge = new Læge("Lægerne", "1234");
 
             //OffentligDatabase offentligDatabase = new OffentligDatabase();

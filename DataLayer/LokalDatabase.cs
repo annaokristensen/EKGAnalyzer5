@@ -76,7 +76,7 @@ namespace DataLayer
         {
             SqlDataReader rdr;
             List<DateTime> list = new List<DateTime>();
-            string selectString = "Select * from dbo.EKGLokal where cpr_borger";
+            string selectString = "Select * from dbo.EKGLokal where cpr_borger = "+ cpr;
             using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
             {
                 rdr = cmd.ExecuteReader();

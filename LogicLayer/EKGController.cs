@@ -13,13 +13,15 @@ namespace LogicLayer
         //private LokalDatabase lokalDatabase;
         private Algoritme algoritme;
         private LokalDatabase EKGresult;
+        private OffentligDatabase offentligDatabase;
 
         public EKGController()
         {
             //lokalDatabase = new LokalDatabase();
             algoritme = new Algoritme();
             EKGresult = new LokalDatabase();
-            
+            offentligDatabase = new OffentligDatabase();
+
         }
 
         //public void CPRTyped(int CPRNumber)
@@ -54,9 +56,9 @@ namespace LogicLayer
             return algoritme.Analyze(ekg);
         }
 
-        public void SendEKG()
+        public void SendEKG(EKG ekg, Læge læge)
         {
-            
+            offentligDatabase.SendToDatabase(ekg,læge);
 
         }
 
