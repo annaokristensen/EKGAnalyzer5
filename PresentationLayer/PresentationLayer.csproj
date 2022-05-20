@@ -116,6 +116,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{a3cff778-a024-47c1-b5cf-6c71797e0392}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogicLayer\LogicLayer.csproj">
       <Project>{3a9588be-1943-4ca7-adde-0bb261eccb5b}</Project>
       <Name>LogicLayer</Name>

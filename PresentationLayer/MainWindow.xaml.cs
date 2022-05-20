@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LogicLayer;
+using DTO;
 
 namespace PresentationLayer
 {
@@ -24,6 +25,7 @@ namespace PresentationLayer
         //private FPWindow findPatientW;
         private EKGController ekgObject;
         /*rivate CMWindow chooseMeassurementW;*/
+        private EKG ekg;
         private string cpr;
         private string laegehus;
         private string dato;
@@ -106,6 +108,12 @@ namespace PresentationLayer
             //chooseMeassurementW.ShowDialog();
             //den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
 
+
+            //
+
+            ekg = ekgObject.GetEKG(cpr,Convert.ToDateTime(dato));
+
+            ekgObject.AnalyzeEKG(ekg.CPR, ekg.MeasurementTime);
 
 
 

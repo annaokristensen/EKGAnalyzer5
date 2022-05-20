@@ -72,6 +72,10 @@ namespace DataLayer
             return ekg;
         }
 
+        public List<DateTime> GetDateTimes(string cpr)
+        {
+            return new List<DateTime>();
+        }
         public bool isUserRegistered(string cpr)
         {
 

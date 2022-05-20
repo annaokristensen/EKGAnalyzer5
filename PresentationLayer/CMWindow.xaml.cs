@@ -74,6 +74,9 @@ namespace PresentationLayer
         {
             //Vi kalder metoden fra vores logiklag (en list med datoerne for målingerne på patienten). Laver en for løkke, hvor vi adder datorerme. for loop som tilføjer en dato af typen string
 
+            List <DateTime> liste = eKGcontrole.CPRTyped(mainWindow.Cpr);
+
+            //For loop, hvor vi går gennem listen. Konvertere til string og ligger dem ind i list boxen. 
             ListboxCM.Items.Add("item1");
             ListboxCM.Items.Add("item2");
             

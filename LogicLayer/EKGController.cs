@@ -28,10 +28,38 @@ namespace LogicLayer
 
         //}
 
-        public bool CPRTyped(string cpr)
+        public List<DateTime> CPRTyped(string cpr)
         {
-            return EKGresult.isUserRegistered(cpr);
+            if (EKGresult.isUserRegistered(cpr))
+            {
+                return EKGresult.GetDateTimes(cpr);
+            }
+            else
+            {
+                return null;
+            }
         }
+
+        public EKG GetEKG(string cpr, DateTime dt)
+        {
+            EKG ekg = EKGresult.GetEKG(cpr, dt);
+
+            return ekg;
+        }
+
+        public bool AnalyzeEKG(string cpr, DateTime dt)
+        {
+            EKG ekg = EKGresult.GetEKG(cpr, dt);
+
+            return algoritme.Analyze(ekg);
+        }
+
+        public void SendEKG()
+        {
+            
+
+        }
+
 
     }
 }
