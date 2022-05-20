@@ -74,7 +74,19 @@ namespace DataLayer
 
         public List<DateTime> GetDateTimes(string cpr)
         {
-            return new List<DateTime>();
+            SqlDataReader rdr;
+            List<DateTime> list = new List<DateTime>();
+            string selectString = "Select * from dbo.EKGLokal where cpr_borger";
+            using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
+            {
+                rdr = cmd.ExecuteReader();
+                if (rdr.Read())
+                {
+                    list.Add(Convert.ToDateTime((DateTime)rdr["start_tid"]));
+                }
+
+            }
+            return list;
         }
         public bool isUserRegistered(string cpr)
         {
