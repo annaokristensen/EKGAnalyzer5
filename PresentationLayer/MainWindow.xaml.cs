@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LogicLayer;
 using DTO;
+using LiveCharts;
 
 namespace PresentationLayer
 {
@@ -25,6 +26,7 @@ namespace PresentationLayer
         //private FPWindow findPatientW;
         private EKGController ekgObject;
         /*rivate CMWindow chooseMeassurementW;*/
+        public ChartValues<double> XAkseEKG { get; set; }
         private EKG ekg;
         private string cpr;
         private string laegehus;
@@ -104,6 +106,8 @@ namespace PresentationLayer
                 Close();
             }
             //this.ShowDialog();
+
+            ekgObject.AnalyzeEKG(ekg.CPR, ekg.MeasurementTime);
             Show();
             //chooseMeassurementW.ShowDialog();
             //den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
@@ -111,9 +115,13 @@ namespace PresentationLayer
 
             //
 
-            ekg = ekgObject.GetEKG(cpr,Convert.ToDateTime(dato));
+            //List<double> EKGsamples = ekgObject.GetEKG(cpr, Convert.ToDateTime(dato));
 
-            ekgObject.AnalyzeEKG(ekg.CPR, ekg.MeasurementTime);
+            //foreach(var maaling in EKGsamples )
+            
+            //{
+
+            //}
 
 
 

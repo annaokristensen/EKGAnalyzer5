@@ -28,16 +28,15 @@ namespace LogicLayer
 
         //}
 
-        public List<DateTime> CPRTyped(string cpr)
+        public bool CPRTyped(string cpr)
         {
-            if (EKGresult.isUserRegistered(cpr))
-            {
-                return EKGresult.GetDateTimes(cpr);
-            }
-            else
-            {
-                return null;
-            }
+            return EKGresult.isUserRegistered(cpr);
+            
+        }
+
+        public List<DateTime> getListDateTime(string cpr)
+        {
+            return EKGresult.GetDateTimes(cpr);
         }
 
         public EKG GetEKG(string cpr, DateTime dt)
