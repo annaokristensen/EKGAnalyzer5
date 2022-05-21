@@ -28,16 +28,15 @@ namespace PresentationLayer
         private EKGController eKGcontrole;
        
         private MainWindow mainWindow;
-        private EKGController ekgObject;
 
         public bool PatientOK { get; set; }
       
 
-        public CMWindow(MainWindow mainWindow, EKGController ekgObject)
+        public CMWindow(MainWindow mainWindow, EKGController ekgControle)
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
-            this.ekgObject = ekgObject;
+            this.eKGcontrole = ekgControle;
         }
 
         private void addToListbox()
@@ -50,7 +49,7 @@ namespace PresentationLayer
         private void ButtonCMHent_Click(object sender, RoutedEventArgs e)
         {
             mainWindow.Dato =
-            (string)ListboxCM.SelectedValue;
+            Convert.ToString(ListboxCM.SelectedValue);
 
             //mainW.ShowDialog();
             //string item = ListboxCM.SelectedItem.ToString();
@@ -73,6 +72,8 @@ namespace PresentationLayer
         private void CMWindow_Loaded(object sender, RoutedEventArgs e)
         {
             //Vi kalder metoden fra vores logiklag (en list med datoerne for målingerne på patienten). Laver en for løkke, hvor vi adder datorerme. for loop som tilføjer en dato af typen string
+
+            TBCPRCM.Text = mainWindow.Cpr;
 
             List <DateTime> liste = eKGcontrole.getListDateTime(mainWindow.Cpr);
             

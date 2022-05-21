@@ -25,23 +25,14 @@
             <RowDefinition Height="108*"/>
             <RowDefinition Height="21*"/>
         </Grid.RowDefinitions>
-        <lvc:CartesianChart Name="EKGAnalyzer" Margin="23,23,7,43"  Background="White" Grid.Row="2" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="3" >
-            <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Dato" FontSize="14" LabelsRotation=" -45" Labels="{Binding XAkseDato}" />
-            </lvc:CartesianChart.AxisX>
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="måling"  FontSize="14"/>
-            </lvc:CartesianChart.AxisY>
-            <lvc:CartesianChart.Series>
-                <lvc:LineSeries Title="Total" PointForeground="Orange" Fill="Transparent" Stroke="Orange" Values="{Binding YAkseTotal}">
-                    <lvc:LineSeries.PointGeometry>
-                        <GeometryGroup>
-                            <RectangleGeometry Rect="50,50,25,25"></RectangleGeometry>
-                        </GeometryGroup>
-                    </lvc:LineSeries.PointGeometry>
-                </lvc:LineSeries>
-
-            </lvc:CartesianChart.Series>
+        <lvc:CartesianChart Name="EKGAnalyzer" Series="{Binding Path =MyCollection}" Margin="23,23,7,43"  Background="White" Grid.Row="2" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="3" >
+            <!--<lvc:LineSeries Title="Total" PointForeground="Orange" Fill="Transparent" Stroke="Orange" >
+                <lvc:LineSeries.PointGeometry>
+                    <GeometryGroup>
+                        <RectangleGeometry Rect="50,50,25,25"></RectangleGeometry>
+                    </GeometryGroup>
+                </lvc:LineSeries.PointGeometry>
+            </lvc:LineSeries>-->
 
         </lvc:CartesianChart>
 
@@ -51,7 +42,7 @@
         <TextBox x:Name="TBMaaling" Grid.Row="1" Grid.Column="5" IsReadOnly="True" Margin="0,2.333,10.333,0.333" HorizontalAlignment="Right" Width="138" Grid.ColumnSpan="2"/>
         <Label x:Name="LabelAnalyse" Content="Analysesvar" Grid.Row="2" Grid.Column="6" Margin="0,2,0,7" HorizontalAlignment="Center" Width="86"/>
         <TextBox x:Name="TBAnalyse" Grid.Row="3" Grid.Column="6" IsReadOnly="True" Margin="18,2,17,7" TextAlignment="Center"/>
-        <Button x:Name="ButtonSend" Content="Send måling" Grid.Column="6" Grid.Row="4" Height="50" Width="100" ></Button>
+        <Button x:Name="ButtonSend" Content="Send måling" Grid.Column="6" Grid.Row="4" Height="50" Width="100" Click="ButtonSend_Click" ></Button>
         <Label x:Name="LabelLaegehus" Content="Lægehus:" Grid.Row="1" Grid.Column="3" Margin="0,9.333,10,0.333" HorizontalAlignment="Right" Width="60"/>
         <TextBox x:Name="TBLaegehus2" Grid.Row="1" Grid.Column="4" IsReadOnly="True" Margin="0,2.333,0.333,0.333"  />
 
