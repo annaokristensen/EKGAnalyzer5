@@ -61,7 +61,6 @@ namespace PresentationLayer
             TBLaegehus2.Text = laegehus;
 
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
         }
 
         public string Cpr
