@@ -68,7 +68,7 @@ namespace DataLayer
                 cmd.Parameters.AddWithValue("@maalformatType", maaleformatType);
 
                 cmd.Parameters.AddWithValue("@data", data.ToArray().SelectMany(value => BitConverter.GetBytes(value)).ToArray());
-                long id1 = (long)cmd.ExecuteScalar(); //Returns the identity of the new tuple/record 64 bit/8 bytes
+                /*long id1 = (long)cmd.ExecuteScalar();*/ //Returns the identity of the new tuple/record 64 bit/8 bytes
                 //HVad gør det her?
             }
 
