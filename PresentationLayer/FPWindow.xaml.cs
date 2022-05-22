@@ -34,15 +34,26 @@ namespace PresentationLayer
         }
         private void ButtonHent_Click(object sender, RoutedEventArgs e)
         {
-            bool patient = eKGcontrole.CPRTyped(TBCPR1.Text);
-
-            if (patient == true)
+            if (TBCPR1.Text == ""||TBLaegehus1.Text==""||TBNR.Text=="")
             {
-                mainW.PatientOK = true;
-                mainW.Cpr = TBCPR1.Text;
-                mainW.Laegehus = TBLaegehus1.Text;
-                mainW.Medarbejdernummer = TBNR.Text;
-                Close();
+                MessageBox.Show("Udfyld alle felter");
+            }
+            else
+            {
+                bool patient = eKGcontrole.CPRTyped(TBCPR1.Text);
+                if (patient == true)
+                {
+                    mainW.PatientOK = true;
+                    mainW.Cpr = TBCPR1.Text;
+                    mainW.Laegehus = TBLaegehus1.Text;
+                    mainW.Medarbejdernummer = TBNR.Text;
+                    Close();
+                }
+                else
+                {
+                    TBCPR1.Text = "";
+                    MessageBox.Show("Ingen måling fundet til indtastet CPR-nummer");
+                }
             }
 
         }

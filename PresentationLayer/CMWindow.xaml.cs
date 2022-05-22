@@ -48,9 +48,17 @@ namespace PresentationLayer
 
         private void ButtonCMHent_Click(object sender, RoutedEventArgs e)
         {
-            mainWindow.Dato =
-            Convert.ToString(ListboxCM.SelectedValue);
-
+            if (ListboxCM.SelectedValue == null)
+            {
+                MessageBox.Show("Vælg hvilken dato målingen skal være fra");
+            }
+            else
+            {
+                mainWindow.Dato =
+                    Convert.ToString(ListboxCM.SelectedValue);
+                Close();
+            }
+            
             //mainW.ShowDialog();
             //string item = ListboxCM.SelectedItem.ToString();
 
@@ -66,7 +74,7 @@ namespace PresentationLayer
             //this.Hide();
             //mainW = new MainWindow();
             //mainW.ShowDialog();
-            Close();
+            
         }
 
         private void CMWindow_Loaded(object sender, RoutedEventArgs e)

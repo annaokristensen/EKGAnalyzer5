@@ -125,7 +125,6 @@ namespace PresentationLayer
             }
             else
             {
-
                 Close();
             }
 
