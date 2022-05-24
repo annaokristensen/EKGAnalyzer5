@@ -33,7 +33,31 @@
                     </GeometryGroup>
                 </lvc:LineSeries.PointGeometry>
             </lvc:LineSeries>-->
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis ShowLabels="True" Labels="">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Stroke="#FFC5C2C2" StrokeThickness="1" IsHitTestVisible="False"/>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+                <lvc:Axis ShowLabels="True" LabelFormatter="{Binding labelformatter}">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Stroke="#FF9C9898" StrokeThickness="2" IsHitTestVisible="False"/>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisX>
 
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="Amplitude (mV)" ShowLabels="True" LabelFormatter="{Binding labelformatter1}">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Stroke="#FFC5C2C2" IsEnabled="True" StrokeThickness="1"></lvc:Separator>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+                <lvc:Axis ShowLabels="true" MinValue="-1" MaxValue="1.5" Labels="" >
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Stroke="#FF9C9898" IsEnabled="True" StrokeThickness="2"></lvc:Separator>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
 
         <Label x:Name="LabelCPR" Content="Cpr" Grid.Row="1" Grid.Column="0" Margin="0,2,4,7" HorizontalAlignment="Right" Width="29"/>
@@ -45,6 +69,6 @@
         <Button x:Name="ButtonSend" Content="Send måling" Grid.Column="6" Grid.Row="4" Height="50" Width="100" Click="ButtonSend_Click" ></Button>
         <Label x:Name="LabelLaegehus" Content="Lægehus:" Grid.Row="1" Grid.Column="3" Margin="0,9.333,10,0.333" HorizontalAlignment="Right" Width="60"/>
         <TextBox x:Name="TBLaegehus2" Grid.Row="1" Grid.Column="4" IsReadOnly="True" Margin="0,2.333,0.333,0.333"  />
-
+        <Slider x:Name="Slider" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Maximum="9" TickFrequency="1" TickPlacement="BottomRight" Ticks="0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9" IsSnapToTickEnabled="True" Thumb.DragCompleted="Slider_ValueChanged" Height="26" Cursor="Hand" Grid.ColumnSpan="3" Margin="22.5,81.5,0,0" Grid.Column="1"/>
     </Grid>
 </Window>

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -38,13 +39,15 @@ namespace PresentationLayer
         private string medarbejdernummer;
 
         public bool PatientOK { get; set; }
+        public Func<double, string> labelformatter { get; set; }
+        public Func<double, string> labelformatter1 { get; set; }
 
         //public bool SeveralDateTimes { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-
+            
             ekgObject = new EKGController();
             //findPatientW = new FPWindow(this, ekgObject);
             //chooseMeassurementW = new CMWindow();
@@ -110,8 +113,6 @@ namespace PresentationLayer
             findPatientW.ShowDialog();
 
             //den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
-
-
             if (PatientOK == true)
             {
                 var chooseMeassurementW = new CMWindow(this, ekgObject);
@@ -131,6 +132,7 @@ namespace PresentationLayer
             ekg = ekgObject.GetEKG(Cpr, Convert.ToDateTime(Dato));
 
             
+
             //HUSK AT ÆNDRE DET NÅR VI FÅR RIGTIGE INTERVALLER OG SAMPLERATES
 
             for (int i = 0; i <ekg.EKGsamples.Count /*Convert.ToInt32(ekg.IntervalSec) * Convert.ToInt32(ekg.SampleRate)*/; i++)
@@ -139,7 +141,6 @@ namespace PresentationLayer
                 EKGLine.Values.Add(sample);
             }
 
-            
 
             //this.ShowDialog();
 
@@ -151,6 +152,25 @@ namespace PresentationLayer
             {
                 TBAnalyse.Text = "Atrieflimren er ikke påvist";
             }
+
+
+            //GRID til EKG bliver lavet
+            EKGAnalyzer.AxisX[0].MinValue = 0;
+            EKGAnalyzer.AxisX[1].MinValue = 0;
+            EKGAnalyzer.AxisX[0].MaxValue = ekg.SampleRate;
+            EKGAnalyzer.AxisX[1].MaxValue = ekg.SampleRate;
+
+            EKGAnalyzer.AxisX[0].Separator.Step = 0.04 / (1 / ekg.SampleRate);
+            EKGAnalyzer.AxisX[1].Separator.Step = 0.2 / (1 / ekg.SampleRate);
+
+            EKGAnalyzer.AxisY[0].MinValue = -1;
+            EKGAnalyzer.AxisY[1].MinValue = -1;
+            //Skal indstilles til 1.5 mV, eller hvad der cirka passer. Skal justeres og tilpasses senere 
+            //når vi har målinger vi kan teste på
+            EKGAnalyzer.AxisY[0].MaxValue = 1.5;
+            EKGAnalyzer.AxisY[1].MaxValue = 1.5;
+            EKGAnalyzer.AxisY[0].Separator.Step = 0.1;
+            EKGAnalyzer.AxisY[1].Separator.Step = 0.5;
 
             Show();
             //chooseMeassurementW.ShowDialog();
@@ -177,6 +197,20 @@ namespace PresentationLayer
             ekgObject.SendEKG(ekg,læge);
 
             MessageBox.Show("Måling er sendt til offentlig database");
+        }
+        private void Slider_ValueChanged(object sender, DragCompletedEventArgs e)
+        {
+
+
+            EKGAnalyzer.AxisX[0].MinValue = Slider.Value * ekg.SampleRate;
+
+            EKGAnalyzer.AxisX[0].MaxValue = (Slider.Value + 1) * ekg.SampleRate;
+
+            EKGAnalyzer.AxisX[1].MinValue = Slider.Value * ekg.SampleRate;
+
+            EKGAnalyzer.AxisX[1].MaxValue = (Slider.Value + 1) * ekg.SampleRate;
+
+
         }
     }
 }
