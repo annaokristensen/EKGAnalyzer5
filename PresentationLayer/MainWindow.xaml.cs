@@ -143,7 +143,7 @@ namespace PresentationLayer
 
             //this.ShowDialog();
 
-            if (ekgObject.AnalyzeEKG(ekg.CPR, ekg.MeasurementTime))
+            if (ekgObject.AnalyzeEKG(ekg.CPR, ekg.MeasurementTime) )
             {
                 TBAnalyse.Text = "Atrieflimren er påvist";
             }
