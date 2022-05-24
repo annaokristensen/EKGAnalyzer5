@@ -41,6 +41,7 @@ namespace PresentationLayer
         public bool PatientOK { get; set; }
         public Func<double, string> labelformatter { get; set; }
         public Func<double, string> labelformatter1 { get; set; }
+        public LineSeries Maaling { get; set; }
 
         //public bool SeveralDateTimes { get; set; }
 
@@ -57,7 +58,7 @@ namespace PresentationLayer
             EKGLine.Values = new ChartValues<double> { };
             EKGLine.Fill = Brushes.Transparent;
             EKGLine.PointGeometry = null;
-
+            
             MyCollection.Add(EKGLine);
 
             TBCPR2.Text = cpr;
@@ -144,14 +145,14 @@ namespace PresentationLayer
 
             //this.ShowDialog();
 
-            if (ekgObject.AnalyzeEKG(ekg.CPR, ekg.MeasurementTime) )
-            {
-                TBAnalyse.Text = "Atrieflimren er påvist";
-            }
-            else
-            {
-                TBAnalyse.Text = "Atrieflimren er ikke påvist";
-            }
+            //if (ekgObject.AnalyzeEKG(ekg.CPR, ekg.MeasurementTime) )
+            //{
+            //    TBAnalyse.Text = "Atrieflimren er påvist";
+            //}
+            //else
+            //{
+            //    TBAnalyse.Text = "Atrieflimren er ikke påvist";
+            //}
 
 
             //GRID til EKG bliver lavet
@@ -171,6 +172,11 @@ namespace PresentationLayer
             EKGAnalyzer.AxisY[1].MaxValue = 1.5;
             EKGAnalyzer.AxisY[0].Separator.Step = 0.1;
             EKGAnalyzer.AxisY[1].Separator.Step = 0.5;
+
+
+
+            double[] testsignal = new double[ekg.IntervalSec];
+
 
             Show();
             //chooseMeassurementW.ShowDialog();
