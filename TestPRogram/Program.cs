@@ -22,28 +22,28 @@ namespace TestPRogram
 
             LokalDatabase lokalDatabase = new LokalDatabase();
 
-            EKG ekg = lokalDatabase.GetEKG("1234567890", new DateTime(1900, 01, 01));
+            
 
-            //EKG ekg1 = new EKG(liste, 2, 2, "x", "x", "x", "1234567890", new DateTime(2000, 1, 1));
+           
+            Læge læge = new Læge("Lægerne", "1234");
 
-            Console.WriteLine(ekg.CPR);
-
-            Console.WriteLine(ekg.DataFormat);
-
-            Console.WriteLine();
-
-            foreach (var dt in lokalDatabase.GetDateTimes(ekg.CPR))
-            {
-                Console.WriteLine(Convert.ToString(dt));
-            }
-            Console.ReadLine();
-            //Læge læge = new Læge("Lægerne", "1234");
-
-            //OffentligDatabase offentligDatabase = new OffentligDatabase();
+            OffentligDatabase offentligDatabase = new OffentligDatabase();
 
             //offentligDatabase.SendToDatabase(ekg1, læge);
 
+            List<double> list = new List<double>();
+            for (int i = 0; i < 5000; i++)
+            {
+                list.Add((i * 0.01) % 1);
+            }
 
+            EKG ekg = new EKG(list,500,10,"data","b","test","1234567890",new DateTime(2000,12,12));
+            ekg.SampleRate = 500;
+            ekg.EKGsamples = list;
+            ekg.IntervalSec = 10;
+
+            
+            offentligDatabase.SendToDatabase(ekg,læge);
         }
     }
 }

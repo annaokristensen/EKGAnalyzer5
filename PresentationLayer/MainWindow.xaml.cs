@@ -35,7 +35,6 @@ namespace PresentationLayer
         private string cpr;
         private string laegehus;
         private string dato;
-        private int signal_length;
         const int TEST_SIGNAL_LENGTH = 140;
 
         private string medarbejdernummer;
@@ -43,7 +42,6 @@ namespace PresentationLayer
         public bool PatientOK { get; set; }
         public Func<double, string> labelformatter { get; set; }
         public Func<double, string> labelformatter1 { get; set; }
-        public LineSeries Maaling { get; set; }
 
         //public bool SeveralDateTimes { get; set; }
 
@@ -57,7 +55,6 @@ namespace PresentationLayer
 
             MyCollection = new SeriesCollection();
             EKGLine = new LineSeries();
-            EKGLine.Values = new ChartValues<double> { };
             EKGLine.Fill = Brushes.Transparent;
             EKGLine.PointGeometry = null;
             
@@ -117,13 +114,11 @@ namespace PresentationLayer
             if (PatientOK == true)
             {
                 var chooseMeassurementW = new CMWindow(this, ekgObject);
-
                 chooseMeassurementW.ShowDialog();
                 if (string.IsNullOrEmpty(Dato))
                 {
                     Close();
                 }
-
             }
             else
             {
@@ -148,12 +143,15 @@ namespace PresentationLayer
             }
 
 
-            double[] specifikMaaling = new double[ekg.IntervalSec * (int)ekg.SampleRate];
+            double[] specifikMaaling = new double[ekg.EKGsamples.Count];
 
             for (int i = 0; i < specifikMaaling.Length; i++)
             {
                 specifikMaaling[i] = ekg.EKGsamples[i];
             }
+
+            EKGLine.Values = new ChartValues<double> { };
+            MyCollection.Add(EKGLine);
 
             for (int i = 0; i < testsignal.Length; i++)
             {
@@ -165,21 +163,19 @@ namespace PresentationLayer
                EKGLine.Values.Add(specifikMaaling[i]);
             }
 
-            MyCollection.Add(EKGLine);
 
-            
             //Styr på Analyze ekg
+            if (ekgObject.AnalyzeEKG(ekg.CPR, ekg.MeasurementTime))
+            {
+                TBAnalyse.Text = "Atrieflimren påvist";
+            }
+            else
+            {
+                TBAnalyse.Text = "Atrieflimren ikke påvist";
+            }
 
-
-            //if (ekgObject.AnalyzeEKG(ekg.CPR, ekg.MeasurementTime) )
-            //{
-            //    TBAnalyse.Text = "Atrieflimren er påvist";
-            //}
-            //else
-            //{
-            //    TBAnalyse.Text = "Atrieflimren er ikke påvist";
-            //}
-
+            labelformatter = x => (x / ekg.SampleRate + Slider.Value).ToString();
+            labelformatter1 = x => (x.ToString("F1"));
 
             //GRID til EKG bliver lavet
             EKGAnalyzer.AxisX[0].MinValue = 0;

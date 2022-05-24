@@ -26,14 +26,7 @@
             <RowDefinition Height="21*"/>
         </Grid.RowDefinitions>
         <lvc:CartesianChart Name="EKGAnalyzer" Series="{Binding Path =MyCollection}" Margin="23,23,7,43"  Background="White" Grid.Row="2" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="3" >
-            <!--<lvc:LineSeries Title="Total" PointForeground="Orange" Fill="Transparent" Stroke="Orange" >
-                <lvc:LineSeries.PointGeometry>
-                    <GeometryGroup>
-                        <RectangleGeometry Rect="50,50,25,25"></RectangleGeometry>
-                    </GeometryGroup>
-                </lvc:LineSeries.PointGeometry>
-            </lvc:LineSeries>-->
-            <lvc:CartesianChart.AxisX>
+          <lvc:CartesianChart.AxisX>
                 <lvc:Axis ShowLabels="True" Labels="">
                     <lvc:Axis.Separator>
                         <lvc:Separator Stroke="#FFC5C2C2" StrokeThickness="1" IsHitTestVisible="False"/>

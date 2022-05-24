@@ -31,7 +31,7 @@ namespace DataLayer
         public void SendToDatabase(EKG ekg, Læge læge)
         {
             string insertStringParam2 =
-                @"INSERT INTO EKGMAELING (dato, antalmaalinger, sfp_ansvrmedarbjnr, sfp_ans_org, borger_cprnr) OUTPUT INSERTED.ekgmaaleid VALUES(@dato, 2, @Id, @org, @cpr)";
+                @"INSERT INTO EKGMAELING (dato, antalmaalinger, sfp_ansvrmedarbjnr, sfp_ans_org, borger_cprnr) OUTPUT INSERTED.ekgmaaleid VALUES(@dato, 1, @Id, @org, @cpr)";
             DateTime dato = ekg.MeasurementTime;
             string cpr = ekg.CPR;
             string org = læge.Organisation;
@@ -57,7 +57,6 @@ namespace DataLayer
 
             string insertStringParam = @"INSERT INTO dbo.EKGDATA (raa_data, samplerate_hz, interval_sec, data_format, bin_eller_tekst, maaleformat_type, start_tid) OUTPUT INSERTED.ekgdataid  VALUES(@data, @sampleRate, @intervalSec, @dataformat, @binEllerTekst, @maalformatType, @starttid)";
 
-
             using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnectionST))
             {
                 cmd.Parameters.AddWithValue("@starttid", starttid);
@@ -68,7 +67,7 @@ namespace DataLayer
                 cmd.Parameters.AddWithValue("@maalformatType", maaleformatType);
 
                 cmd.Parameters.AddWithValue("@data", data.ToArray().SelectMany(value => BitConverter.GetBytes(value)).ToArray());
-                /*long id1 = (long)cmd.ExecuteScalar();*/ //Returns the identity of the new tuple/record 64 bit/8 bytes
+                long id1 = (long)cmd.ExecuteScalar(); //Returns the identity of the new tuple/record 64 bit/8 bytes
                 //HVad gør det her?
             }
 

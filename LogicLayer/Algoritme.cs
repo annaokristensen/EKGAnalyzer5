@@ -57,15 +57,21 @@ namespace LogicLayer
 
             PtakCount = PtakCount - RtakCount; //Da R-takker tælles med i P-tak count trækkes de fra her igen
 
-            if (PtakCount / RtakCount >= 4) //Et forslag med forholdet 1 til 4
-            {
-                return true;
-            }
-            else
+            if (PtakCount == 0 || RtakCount == 0)
             {
                 return false;
             }
 
+            {
+                if (PtakCount / RtakCount >= 4) //Et forslag med forholdet 1 til 4
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
 
     }

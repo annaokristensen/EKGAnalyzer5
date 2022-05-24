@@ -60,7 +60,5 @@ namespace LogicLayer
             offentligDatabase.SendToDatabase(ekg,læge);
 
         }
-
-
     }
 }
