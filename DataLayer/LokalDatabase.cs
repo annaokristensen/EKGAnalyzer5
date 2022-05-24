@@ -44,7 +44,7 @@ namespace DataLayer
             using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
             {
                 rdr = cmd.ExecuteReader();
-                while (rdr.Read())
+                if (rdr.Read())
                 {
                     bytesArr = (byte[])rdr["raa_data"];
                 }

@@ -35,6 +35,8 @@ namespace PresentationLayer
         private string cpr;
         private string laegehus;
         private string dato;
+        private int signal_length;
+        const int TEST_SIGNAL_LENGTH = 140;
 
         private string medarbejdernummer;
 
@@ -59,8 +61,6 @@ namespace PresentationLayer
             EKGLine.Fill = Brushes.Transparent;
             EKGLine.PointGeometry = null;
             
-            MyCollection.Add(EKGLine);
-
             TBCPR2.Text = cpr;
             TBLaegehus2.Text = laegehus;
 
@@ -132,18 +132,44 @@ namespace PresentationLayer
 
             ekg = ekgObject.GetEKG(Cpr, Convert.ToDateTime(Dato));
 
-            
+            double[] testsignal = new double[TEST_SIGNAL_LENGTH];
 
-            //HUSK AT ÆNDRE DET NÅR VI FÅR RIGTIGE INTERVALLER OG SAMPLERATES
-
-            for (int i = 0; i <ekg.EKGsamples.Count /*Convert.ToInt32(ekg.IntervalSec) * Convert.ToInt32(ekg.SampleRate)*/; i++)
+            for (int i = 0; i < 20; i++)
             {
-                double sample = ekg.EKGsamples[i];
-                EKGLine.Values.Add(sample);
+                testsignal[i] = 0;
+            }
+            for (int i = 20; i < 120; i++)
+            {
+                testsignal[i] = 1;
+            }
+            for (int i = 120; i < testsignal.Length; i++)
+            {
+                testsignal[i] = 0;
             }
 
 
-            //this.ShowDialog();
+            double[] specifikMaaling = new double[ekg.IntervalSec * (int)ekg.SampleRate];
+
+            for (int i = 0; i < specifikMaaling.Length; i++)
+            {
+                specifikMaaling[i] = ekg.EKGsamples[i];
+            }
+
+            for (int i = 0; i < testsignal.Length; i++)
+            {
+                EKGLine.Values.Add(testsignal[i]);
+            }
+
+            for (int i = 0; i <specifikMaaling.Length; i++)
+            {
+               EKGLine.Values.Add(specifikMaaling[i]);
+            }
+
+            MyCollection.Add(EKGLine);
+
+            
+            //Styr på Analyze ekg
+
 
             //if (ekgObject.AnalyzeEKG(ekg.CPR, ekg.MeasurementTime) )
             //{
@@ -173,27 +199,7 @@ namespace PresentationLayer
             EKGAnalyzer.AxisY[0].Separator.Step = 0.1;
             EKGAnalyzer.AxisY[1].Separator.Step = 0.5;
 
-
-
-            double[] testsignal = new double[ekg.IntervalSec];
-
-
             Show();
-            //chooseMeassurementW.ShowDialog();
-            //den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
-
-
-            //
-
-            //List<double> EKGsamples = ekgObject.GetEKG(cpr, Convert.ToDateTime(dato));
-
-            //foreach(var maaling in EKGsamples )
-            
-            //{
-
-            //}
-
-
 
         }
 
@@ -204,10 +210,9 @@ namespace PresentationLayer
 
             MessageBox.Show("Måling er sendt til offentlig database");
         }
+
         private void Slider_ValueChanged(object sender, DragCompletedEventArgs e)
         {
-
-
             EKGAnalyzer.AxisX[0].MinValue = Slider.Value * ekg.SampleRate;
 
             EKGAnalyzer.AxisX[0].MaxValue = (Slider.Value + 1) * ekg.SampleRate;
@@ -215,8 +220,6 @@ namespace PresentationLayer
             EKGAnalyzer.AxisX[1].MinValue = Slider.Value * ekg.SampleRate;
 
             EKGAnalyzer.AxisX[1].MaxValue = (Slider.Value + 1) * ekg.SampleRate;
-
-
         }
     }
 }
