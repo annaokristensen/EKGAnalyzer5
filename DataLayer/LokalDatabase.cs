@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using System.Globalization;
 
 namespace DataLayer
 {
@@ -14,6 +16,9 @@ namespace DataLayer
         private SqlDataReader reader;
         private SqlCommand command;
         private const string db = "EKG_Lokal";
+        List<DateTime> listDT = new List<DateTime>();
+        List<int> listid = new List<int>();
+
         public LokalDatabase()
         {
             
@@ -22,8 +27,9 @@ namespace DataLayer
         {
             get
             {
-                var con = new SqlConnection($@"Data Source=BBLAP18\SQLEXPRESS;Initial Catalog=EKG_Lokal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-                con.Open(); 
+                //var con = new SqlConnection($@"Data Source=BBLAP18\SQLEXPRESS;Initial Catalog=testprojekt;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                var con = new SqlConnection($@"Data Source=172.20.10.4\SQLEXPRESS;Initial Catalog=testprojekt;User ID =Login; Password=1234;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                con.Open();
                 return con;
             }
         }
@@ -40,7 +46,72 @@ namespace DataLayer
             byte[] bytesArr = new byte[800];
             List<double> list = new List<double>();
             SqlDataReader rdr;
-            string selectString = "Select * from dbo.EKGLokal where cpr_borger = " + CPR + " AND start_tid = '1 Jan 1900'"; //datetime er ikke rigtigt
+
+            //string dato = Convert.ToString(dt.Day);
+
+            //string måned = "";
+            //switch (dt.Month)
+            //{
+            //    case 1:
+            //        måned = "Jan";
+            //        break;
+            //    case 2:
+            //        måned = "Feb";
+            //        break;
+            //    case 3:
+            //        måned = "Mar";
+            //        break;
+            //    case 4:
+            //        måned = "Apr";
+            //        break;
+            //    case 5:
+            //        måned = "May";
+            //        break;
+            //    case 6:
+            //        måned = "Jun";
+            //        break;
+            //    case 7:
+            //        måned = "Jul";
+            //        break;
+            //    case 8:
+            //        måned = "Aug";
+            //        break;
+            //    case 9:
+            //        måned = "Sep";
+            //        break;
+            //    case 10:
+            //        måned = "Oct";
+            //        break;
+            //    case 11:
+            //        måned = "Nov";
+            //        break;
+            //    case 12:
+            //        måned = "Dec";
+            //        break;
+            //}
+
+            //string år = Convert.ToString(dt.Year);
+            //string HH = Convert.ToString(dt.Hour);
+            //string mm = Convert.ToString(dt.Minute);
+            //string ss = Convert.ToString(dt.Second);
+
+            //string dtString = dato + " " + måned + " " + år + " " + HH + ":" + mm + ":" + ss;
+            int id=0;
+
+            for (int i = 0; i < listDT.Count; i++)
+            {
+                if (listDT[i].ToString() == dt.ToString())
+                {
+                    id = listid[i];
+                    break;
+                }
+            }
+
+            //string selectString = "Select * from dbo.EKGLokal where cpr_borger = '" + CPR + "' AND start_tid = '" + dt.ToString("yyyy-MM-dd HH:mm:ss") + "'"; //datetime er ikke rigtigt
+            //string selectString = "Select * from dbo.EKGLokal where cpr_borger = '" + CPR + "' AND start_tid = '20 May 2022'"; //datetime er ikke rigtigt
+
+            string selectString = "Select * from dbo.EKGLokal where ekgid = "+ id; //datetime er ikke rigtigt
+
             using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
             {
                 rdr = cmd.ExecuteReader();
@@ -75,27 +146,27 @@ namespace DataLayer
         public List<DateTime> GetDateTimes(string cpr)
         {
             SqlDataReader rdr;
-            List<DateTime> list = new List<DateTime>();
-            string selectString = "Select * from dbo.EKGLokal where cpr_borger = "+ cpr;
+            string selectString = "Select * from EKGLokal Where cpr_borger = '" + cpr +"'";
+            //string selectString = "Select * from EKGLokal Where ekgid = " + 15;
             using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
             {
                 rdr = cmd.ExecuteReader();
-                if (rdr.Read())
+                while (rdr.Read())
                 {
-                    list.Add(Convert.ToDateTime((DateTime)rdr["start_tid"]));
+                    listDT.Add(Convert.ToDateTime((DateTime)rdr["start_tid"]));
+                    listid.Add((int)rdr["ekgid"]);
                 }
 
             }
-            return list;
+            return listDT;
         }
         public bool isUserRegistered(string cpr)
         {
-
             SqlDataReader rdr;
             //SqlConnection er typen til variablen conn. Er fundet ved at skrive var conn, inden. 
             /*SqlConnection con = connection;*/ //tager fat i connection under proppertyen, så vi holder fast i den samme connection. Vi sender den connection ind til vores Sqlcommand.
-            string selectString = "Select * from EKGLokal Where cpr_borger = " + cpr; //Her ligger min forespørgelse. $ er en template streng, der gør at vi kan skrive midt i strengen.
-            
+            string selectString = "Select * from EKGLokal Where cpr_borger = '" + cpr+"'"; //Her ligger min forespørgelse. $ er en template streng, der gør at vi kan skrive midt i strengen.
+            //string selectString = "Select * from EKGLokal Where ekgid = " + 15;
             bool isUserFound = false; // bool, fordi det er retur værdien i en metoden ovenfor. 
 
             using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
@@ -105,21 +176,10 @@ namespace DataLayer
                 { //Read metoden returnere selv om den er true eller false. 
                     isUserFound = true;
                 }
-
             }
             
-            //con.Close();
             return isUserFound;
-
-            //bool result = false;
-
-            //if (cpr == "123456789") {
-            //    result = true;
-            //}
-
-            //return result;
         }
-
-        //select Dato 
+        
     }
 }

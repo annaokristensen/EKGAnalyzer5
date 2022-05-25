@@ -26,9 +26,9 @@ namespace PresentationLayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private FPWindow findPatientW;
         private EKGController ekgObject;
-        /*rivate CMWindow chooseMeassurementW;*/
+        private FPWindow findPatientW;
+        private CMWindow chooseMeassurementW;
         public SeriesCollection MyCollection { get; set; }
         private LineSeries EKGLine;
         private EKG ekg;
@@ -42,28 +42,85 @@ namespace PresentationLayer
         public bool PatientOK { get; set; }
         public Func<double, string> labelformatter { get; set; }
         public Func<double, string> labelformatter1 { get; set; }
-
-        //public bool SeveralDateTimes { get; set; }
+        
 
         public MainWindow()
         {
             InitializeComponent();
-            
             ekgObject = new EKGController();
-            //findPatientW = new FPWindow(this, ekgObject);
-            //chooseMeassurementW = new CMWindow();
-
             MyCollection = new SeriesCollection();
             EKGLine = new LineSeries();
             EKGLine.Fill = Brushes.Transparent;
             EKGLine.PointGeometry = null;
-            
-            TBCPR2.Text = cpr;
-            TBLaegehus2.Text = laegehus;
 
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            this.Hide();
+            findPatientW = new FPWindow(this, ekgObject);
+            findPatientW.ShowDialog();
+
+            //den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
+            if (PatientOK == true)
+            {
+                chooseMeassurementW = new CMWindow(this, ekgObject);
+                chooseMeassurementW.ShowDialog();
+                if (string.IsNullOrEmpty(Dato))
+                {
+                    Close();
+                }
+            }
+            else
+            {
+                Close();
+            }
+            ekg = ekgObject.GetEKG(Cpr, Convert.ToDateTime(Dato));
+
+            labelformatter = x => (x / ekg.SampleRate + Slider.Value).ToString();
+            labelformatter1 = x => x.ToString("F1");
+
+            double[] testsignal = new double[TEST_SIGNAL_LENGTH];
+
+            for (int i = 0; i < 20; i++)
+            {
+                testsignal[i] = 0;
+            }
+            for (int i = 20; i < 120; i++)
+            {
+                testsignal[i] = 1;
+            }
+            for (int i = 120; i < testsignal.Length; i++)
+            {
+                testsignal[i] = 0;
+            }
+
+
+            double[] specifikMaaling = new double[ekg.EKGsamples.Count];
+
+            //double[] specifikMaaling = new double[5000];
+
+            for (int i = 0; i < specifikMaaling.Length; i++)
+            {
+                //specifikMaaling[i] = (i * 0.01) % 1;
+
+                specifikMaaling[i] = ekg.EKGsamples[i];
+            }
+
+            EKGLine.Values = new ChartValues<double> { };
+            MyCollection.Add(EKGLine);
+
+            for (int i = 0; i < testsignal.Length; i++)
+            {
+                EKGLine.Values.Add(testsignal[i]);
+            }
+
+            for (int i = 0; i < specifikMaaling.Length; i++)
+            {
+                EKGLine.Values.Add(specifikMaaling[i]);
+            }
+
             DataContext = this;
 
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            Show();
+            
         }
 
         public string Cpr
@@ -106,62 +163,8 @@ namespace PresentationLayer
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Hide();
-            var findPatientW = new FPWindow(this, ekgObject);
-            findPatientW.ShowDialog();
-
-            //den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
-            if (PatientOK == true)
-            {
-                var chooseMeassurementW = new CMWindow(this, ekgObject);
-                chooseMeassurementW.ShowDialog();
-                if (string.IsNullOrEmpty(Dato))
-                {
-                    Close();
-                }
-            }
-            else
-            {
-                Close();
-            }
-
-            ekg = ekgObject.GetEKG(Cpr, Convert.ToDateTime(Dato));
-
-            double[] testsignal = new double[TEST_SIGNAL_LENGTH];
-
-            for (int i = 0; i < 20; i++)
-            {
-                testsignal[i] = 0;
-            }
-            for (int i = 20; i < 120; i++)
-            {
-                testsignal[i] = 1;
-            }
-            for (int i = 120; i < testsignal.Length; i++)
-            {
-                testsignal[i] = 0;
-            }
-
-
-            double[] specifikMaaling = new double[ekg.EKGsamples.Count];
-
-            for (int i = 0; i < specifikMaaling.Length; i++)
-            {
-                specifikMaaling[i] = ekg.EKGsamples[i];
-            }
-
-            EKGLine.Values = new ChartValues<double> { };
-            MyCollection.Add(EKGLine);
-
-            for (int i = 0; i < testsignal.Length; i++)
-            {
-                EKGLine.Values.Add(testsignal[i]);
-            }
-
-            for (int i = 0; i <specifikMaaling.Length; i++)
-            {
-               EKGLine.Values.Add(specifikMaaling[i]);
-            }
+            TBCPR2.Text = cpr;
+            TBLaegehus2.Text = laegehus;
 
 
             //Styr på Analyze ekg
@@ -173,9 +176,6 @@ namespace PresentationLayer
             {
                 TBAnalyse.Text = "Atrieflimren ikke påvist";
             }
-
-            labelformatter = x => (x / ekg.SampleRate + Slider.Value).ToString();
-            labelformatter1 = x => (x.ToString("F1"));
 
             //GRID til EKG bliver lavet
             EKGAnalyzer.AxisX[0].MinValue = 0;
@@ -194,9 +194,6 @@ namespace PresentationLayer
             EKGAnalyzer.AxisY[1].MaxValue = 1.5;
             EKGAnalyzer.AxisY[0].Separator.Step = 0.1;
             EKGAnalyzer.AxisY[1].Separator.Step = 0.5;
-
-            Show();
-
         }
 
         private void ButtonSend_Click(object sender, RoutedEventArgs e)
