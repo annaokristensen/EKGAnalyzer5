@@ -170,11 +170,11 @@ namespace PresentationLayer
             //Styr på Analyze ekg
             if (ekgObject.AnalyzeEKG(ekg.CPR, ekg.MeasurementTime))
             {
-                TBAnalyse.Text = "Atrieflimren er \n påvist";
+                TBAnalyse.Text = "Tegn på \n atrieflimren";
             }
             else
             {
-                TBAnalyse.Text = "Atrieflimren er \n ikke påvist";
+                TBAnalyse.Text = "Ikke tegn på \n atrieflimren";
             }
 
             //GRID til EKG bliver lavet

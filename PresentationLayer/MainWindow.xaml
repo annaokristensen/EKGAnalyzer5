@@ -59,7 +59,7 @@
         <Label x:Name="LabelMaaling" Content="Måletidspunkt" Grid.Row="1" Grid.Column="5" Margin="0,2,0.5,7" HorizontalAlignment="Right" Width="86"/>
         <TextBox x:Name="TBMaaling" Grid.Row="1" Grid.Column="6" IsReadOnly="True" Margin="0,2,10,0" HorizontalAlignment="Right" Width="138" Grid.ColumnSpan="2"/>
         <Label x:Name="LabelAnalyse" Content="Analysesvar" Grid.Row="2" Grid.Column="6" Margin="31.5,2,18,7" HorizontalAlignment="Center" Width="86"/>
-        <TextBox x:Name="TBAnalyse" Grid.Row="3" Grid.Column="6" IsReadOnly="True" Margin="17.5,2,4,6.5" TextAlignment="Center" AcceptsReturn="True"/>
+        <TextBox x:Name="TBAnalyse" Grid.Row="3" Grid.Column="6" IsReadOnly="True" Margin="17.5,2,4,6.5" TextAlignment="Center" AcceptsReturn="True" FontSize="20"/>
         <Button x:Name="ButtonSend" Content="Send måling" Grid.Column="6" Grid.Row="4" Height="50" Width="100" Click="ButtonSend_Click" Margin="24.5,28.5,11,29" ></Button>
         <Label x:Name="LabelLaegehus" Content="Lægehus:" Grid.Row="1" Grid.Column="3" Margin="0,9,10,0" HorizontalAlignment="Right" Width="60"/>
         <TextBox x:Name="TBLaegehus2" Grid.Row="1" Grid.Column="4" IsReadOnly="True" Margin="0,2,0,0"  />
