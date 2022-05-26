@@ -52,6 +52,7 @@ namespace PresentationLayer
             MyCollection = new SeriesCollection();
             EKGLine = new LineSeries();
             EKGLine.Fill = System.Windows.Media.Brushes.Transparent;
+            EKGLine.LineSmoothness = 0;
             EKGLine.PointGeometry = null;
 
             this.Hide();
@@ -81,15 +82,15 @@ namespace PresentationLayer
 
             for (int i = 0; i < 20; i++)
             {
-                testsignal[i] = 1.65;
+                testsignal[i] = 0;
             }
             for (int i = 20; i < 120; i++)
             {
-                testsignal[i] = 2.65;
+                testsignal[i] = 1;
             }
             for (int i = 120; i < testsignal.Length; i++)
             {
-                testsignal[i] = 1.65;
+                testsignal[i] = 0;
             }
 
 
