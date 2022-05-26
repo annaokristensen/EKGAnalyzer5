@@ -21,7 +21,6 @@ namespace DataLayer
 
         public LokalDatabase()
         {
-            
         }
         private SqlConnection OpenConnectionST
         {
