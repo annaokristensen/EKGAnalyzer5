@@ -186,12 +186,12 @@ namespace PresentationLayer
             EKGAnalyzer.AxisX[0].Separator.Step = 0.04 / (1 / ekg.SampleRate);
             EKGAnalyzer.AxisX[1].Separator.Step = 0.2 / (1 / ekg.SampleRate);
 
-            EKGAnalyzer.AxisY[0].MinValue = 0;
-            EKGAnalyzer.AxisY[1].MinValue = 0;
+            EKGAnalyzer.AxisY[0].MinValue = -1;
+            EKGAnalyzer.AxisY[1].MinValue = -1;
             //Skal indstilles til 1.5 mV, eller hvad der cirka passer. Skal justeres og tilpasses senere 
             //når vi har målinger vi kan teste på
-            EKGAnalyzer.AxisY[0].MaxValue = 3.3;
-            EKGAnalyzer.AxisY[1].MaxValue = 3.3;
+            EKGAnalyzer.AxisY[0].MaxValue = 2;
+            EKGAnalyzer.AxisY[1].MaxValue = 2;
             EKGAnalyzer.AxisY[0].Separator.Step = 0.1;
             EKGAnalyzer.AxisY[1].Separator.Step = 0.5;
         }

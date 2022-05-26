@@ -6,8 +6,8 @@ namespace LogicLayer
 {
     public class Algoritme
     {
-        private double PtakThreshold = 1.8;
-        private double RtakThreshold = 2.5;
+        private double PtakThreshold = 0.2;
+        private double RtakThreshold = 0.85;
         private bool belowThresholdPtak = true;
         private bool belowThresholdRtak = true;
         private int PtakCount = 0;
@@ -63,7 +63,7 @@ namespace LogicLayer
             }
 
             {
-                if (PtakCount / RtakCount >= 3) //Et forslag med forholdet 1 til 4
+                if (PtakCount / RtakCount >= 3) 
                 {
                     return true;
                 }
