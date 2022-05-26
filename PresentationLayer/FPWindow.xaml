@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="Find Patient" Height="250" Width="418" Background="#FFDFEAF3">
+        Title="Find Patient" Height="250" Width="418" Background="#FFDFEAF3" >
     <Grid HorizontalAlignment="Right" Margin="-63,0,-72.667,-0.333" Width="547">
         <Grid.RowDefinitions>
             <RowDefinition Height="0*"/>

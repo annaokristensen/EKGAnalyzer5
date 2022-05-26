@@ -27,8 +27,8 @@ namespace DataLayer
         {
             get
             {
-                //var con = new SqlConnection($@"Data Source=BBLAP18\SQLEXPRESS;Initial Catalog=testprojekt;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-                var con = new SqlConnection($@"Data Source=172.20.10.4\SQLEXPRESS;Initial Catalog=testprojekt;User ID =Login; Password=1234;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                var con = new SqlConnection($@"Data Source=BBLAP18\SQLEXPRESS;Initial Catalog=EKG_Lokal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                //var con = new SqlConnection($@"Data Source=172.20.10.4\SQLEXPRESS;Initial Catalog=testprojekt;User ID =Login; Password=1234;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                 con.Open();
                 return con;
             }
@@ -47,55 +47,7 @@ namespace DataLayer
             List<double> list = new List<double>();
             SqlDataReader rdr;
 
-            //string dato = Convert.ToString(dt.Day);
-
-            //string måned = "";
-            //switch (dt.Month)
-            //{
-            //    case 1:
-            //        måned = "Jan";
-            //        break;
-            //    case 2:
-            //        måned = "Feb";
-            //        break;
-            //    case 3:
-            //        måned = "Mar";
-            //        break;
-            //    case 4:
-            //        måned = "Apr";
-            //        break;
-            //    case 5:
-            //        måned = "May";
-            //        break;
-            //    case 6:
-            //        måned = "Jun";
-            //        break;
-            //    case 7:
-            //        måned = "Jul";
-            //        break;
-            //    case 8:
-            //        måned = "Aug";
-            //        break;
-            //    case 9:
-            //        måned = "Sep";
-            //        break;
-            //    case 10:
-            //        måned = "Oct";
-            //        break;
-            //    case 11:
-            //        måned = "Nov";
-            //        break;
-            //    case 12:
-            //        måned = "Dec";
-            //        break;
-            //}
-
-            //string år = Convert.ToString(dt.Year);
-            //string HH = Convert.ToString(dt.Hour);
-            //string mm = Convert.ToString(dt.Minute);
-            //string ss = Convert.ToString(dt.Second);
-
-            //string dtString = dato + " " + måned + " " + år + " " + HH + ":" + mm + ":" + ss;
+           
             int id=0;
 
             for (int i = 0; i < listDT.Count; i++)
@@ -110,7 +62,7 @@ namespace DataLayer
             //string selectString = "Select * from dbo.EKGLokal where cpr_borger = '" + CPR + "' AND start_tid = '" + dt.ToString("yyyy-MM-dd HH:mm:ss") + "'"; //datetime er ikke rigtigt
             //string selectString = "Select * from dbo.EKGLokal where cpr_borger = '" + CPR + "' AND start_tid = '20 May 2022'"; //datetime er ikke rigtigt
 
-            string selectString = "Select * from dbo.EKGLokal where ekgid = "+ id; //datetime er ikke rigtigt
+            string selectString = "Select * from dbo.EKGLokal where ekgid = "+ id; 
 
             using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
             {

@@ -9,13 +9,14 @@
         Title="EKG-Analyzer" Height="450" Width="800" HorizontalAlignment="Center" Loaded="Window_Loaded">
     <Grid Height="434" VerticalAlignment="Bottom" Background="#FFDFEAF3" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="62*"/>
-            <ColumnDefinition Width="137*"/>
-            <ColumnDefinition Width="62*"/>
-            <ColumnDefinition Width="134*"/>
-            <ColumnDefinition Width="137*"/>
-            <ColumnDefinition Width="164*"/>
-            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="58*"/>
+            <ColumnDefinition Width="128*"/>
+            <ColumnDefinition Width="58*"/>
+            <ColumnDefinition Width="125*"/>
+            <ColumnDefinition Width="127*"/>
+            <ColumnDefinition Width="153*"/>
+            <ColumnDefinition Width="136*"/>
+            <ColumnDefinition Width="13*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="41*"/>
@@ -25,8 +26,8 @@
             <RowDefinition Height="108*"/>
             <RowDefinition Height="21*"/>
         </Grid.RowDefinitions>
-        <lvc:CartesianChart Name="EKGAnalyzer" Series="{Binding Path =MyCollection}" Margin="23,23,7,43"  Background="White" Grid.Row="2" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="3" >
-          <lvc:CartesianChart.AxisX>
+        <lvc:CartesianChart Name="EKGAnalyzer" Series="{Binding Path =MyCollection}" Margin="22.5,23,6.5,43"  Background="White" Grid.Row="2" Grid.ColumnSpan="5" Grid.Column="1" Grid.RowSpan="3" >
+            <lvc:CartesianChart.AxisX>
                 <lvc:Axis ShowLabels="True" Labels="">
                     <lvc:Axis.Separator>
                         <lvc:Separator Stroke="#FFC5C2C2" StrokeThickness="1" IsHitTestVisible="False"/>
@@ -53,15 +54,15 @@
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
 
-        <Label x:Name="LabelCPR" Content="Cpr" Grid.Row="1" Grid.Column="0" Margin="0,2,4,7" HorizontalAlignment="Right" Width="29"/>
-        <TextBox x:Name="TBCPR2" Grid.Row="1" Grid.Column="1" IsReadOnly="True" Margin="0.667,2.333,57,0.333" Grid.ColumnSpan="2" />
-        <Label x:Name="LabelMaaling" Content="Måletidspunkt" Grid.Row="1" Grid.Column="5" Margin="0,2,0,7" HorizontalAlignment="Right" Width="86"/>
-        <TextBox x:Name="TBMaaling" Grid.Row="1" Grid.Column="5" IsReadOnly="True" Margin="0,2.333,10.333,0.333" HorizontalAlignment="Right" Width="138" Grid.ColumnSpan="2"/>
-        <Label x:Name="LabelAnalyse" Content="Analysesvar" Grid.Row="2" Grid.Column="6" Margin="0,2,0,7" HorizontalAlignment="Center" Width="86"/>
-        <TextBox x:Name="TBAnalyse" Grid.Row="3" Grid.Column="6" IsReadOnly="True" Margin="18,2,17,7" TextAlignment="Center"/>
-        <Button x:Name="ButtonSend" Content="Send måling" Grid.Column="6" Grid.Row="4" Height="50" Width="100" Click="ButtonSend_Click" ></Button>
-        <Label x:Name="LabelLaegehus" Content="Lægehus:" Grid.Row="1" Grid.Column="3" Margin="0,9.333,10,0.333" HorizontalAlignment="Right" Width="60"/>
-        <TextBox x:Name="TBLaegehus2" Grid.Row="1" Grid.Column="4" IsReadOnly="True" Margin="0,2.333,0.333,0.333"  />
-        <Slider x:Name="Slider" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Maximum="9" TickFrequency="1" TickPlacement="BottomRight" Ticks="0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5,8,8.5,9" IsSnapToTickEnabled="True" Thumb.DragCompleted="Slider_ValueChanged" Height="26" Cursor="Hand" Grid.ColumnSpan="3" Margin="22.5,81.5,0,0" Grid.Column="1"/>
+        <Label x:Name="LabelCPR" Content="Cpr" Grid.Row="1" Grid.Column="0" Margin="0,2,3.5,7" HorizontalAlignment="Right" Width="30"/>
+        <TextBox x:Name="TBCPR2" Grid.Row="1" Grid.Column="1" IsReadOnly="True" Margin="0.5,2,56.5,0" Grid.ColumnSpan="2" />
+        <Label x:Name="LabelMaaling" Content="Måletidspunkt" Grid.Row="1" Grid.Column="5" Margin="0,2,0.5,7" HorizontalAlignment="Right" Width="86"/>
+        <TextBox x:Name="TBMaaling" Grid.Row="1" Grid.Column="6" IsReadOnly="True" Margin="0,2,10,0" HorizontalAlignment="Right" Width="138" Grid.ColumnSpan="2"/>
+        <Label x:Name="LabelAnalyse" Content="Analysesvar" Grid.Row="2" Grid.Column="6" Margin="31.5,2,18,7" HorizontalAlignment="Center" Width="86"/>
+        <TextBox x:Name="TBAnalyse" Grid.Row="3" Grid.Column="6" IsReadOnly="True" Margin="17.5,2,4,6.5" TextAlignment="Center" AcceptsReturn="True"/>
+        <Button x:Name="ButtonSend" Content="Send måling" Grid.Column="6" Grid.Row="4" Height="50" Width="100" Click="ButtonSend_Click" Margin="24.5,28.5,11,29" ></Button>
+        <Label x:Name="LabelLaegehus" Content="Lægehus:" Grid.Row="1" Grid.Column="3" Margin="0,9,10,0" HorizontalAlignment="Right" Width="60"/>
+        <TextBox x:Name="TBLaegehus2" Grid.Row="1" Grid.Column="4" IsReadOnly="True" Margin="0,2,0,0"  />
+        <Slider x:Name="Slider" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Maximum="4" TickFrequency="1" TickPlacement="BottomRight" Ticks="0.5,1,1.5,2,2.5,3,3.5,4,4.5,5" IsSnapToTickEnabled="True" Thumb.DragCompleted="Slider_ValueChanged" Height="26" Cursor="Hand" Grid.ColumnSpan="3" Margin="22.5,81.5,0,0" Grid.Column="1"/>
     </Grid>
 </Window>

@@ -6,8 +6,8 @@ namespace LogicLayer
 {
     public class Algoritme
     {
-        private double PtakThreshold = 0.12;
-        private double RtakThreshold = 0.5;
+        private double PtakThreshold = 1.8;
+        private double RtakThreshold = 2.5;
         private bool belowThresholdPtak = true;
         private bool belowThresholdRtak = true;
         private int PtakCount = 0;
@@ -63,7 +63,7 @@ namespace LogicLayer
             }
 
             {
-                if (PtakCount / RtakCount >= 4) //Et forslag med forholdet 1 til 4
+                if (PtakCount / RtakCount >= 3) //Et forslag med forholdet 1 til 4
                 {
                     return true;
                 }
@@ -76,33 +76,3 @@ namespace LogicLayer
 
     }
 }
-
-//List<double> EKGSample = ekg.EKGsamples;
-
-//for (int i = 0; i < EKGSample.Count; i++)
-//{
-//    if (EKGSample[i] > PtakThreshold && belowThresholdPtak == true && EKGSample[i] < RtakThreshold)
-//    {
-//        PtakCount++;
-//    }
-
-//    if (EKGSample[i] < PtakThreshold)
-//    {
-//        belowThresholdPtak = true;
-//    }
-//    else
-//    {
-//        belowThresholdPtak = false;
-//    }
-//}
-
-//double PtakMinute = (PtakCount / ekg.MeasurementPeriod) * 60;
-
-//if (PtakMinute > 200)
-//{
-//    return true;
-//}
-//else
-//{
-//    return false;
-//}

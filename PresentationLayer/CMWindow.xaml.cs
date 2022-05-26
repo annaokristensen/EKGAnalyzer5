@@ -37,14 +37,11 @@ namespace PresentationLayer
             InitializeComponent();
             this.mainWindow = mainWindow;
             this.eKGcontrole = ekgControle;
-        }
 
-        private void addToListbox()
-        {
-            //ListBox cm = new ListboxCM();
-            //cm.Items.Add("item");
-            
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
         }
+        
 
         private void ButtonCMHent_Click(object sender, RoutedEventArgs e)
         {
@@ -58,23 +55,6 @@ namespace PresentationLayer
                     Convert.ToString(ListboxCM.SelectedValue);
                 Close();
             }
-            
-            //mainW.ShowDialog();
-            //string item = ListboxCM.SelectedItem.ToString();
-
-            // Tjekker om vi har valgt en måling, før vi lukker dette window.
-
-            // SKal mainWindow mainW have noget props som ændres på baggrund af nogle valg fra denne side.
-            // Hvis dette er korrekt, så kalder vi Close();
-            // Nu åbnes main window igen.
-
-
-
-            //når hent button trykkes, åbnes den valgte måling
-            //this.Hide();
-            //mainW = new MainWindow();
-            //mainW.ShowDialog();
-            
         }
 
         private void CMWindow_Loaded(object sender, RoutedEventArgs e)
@@ -89,10 +69,6 @@ namespace PresentationLayer
             {
                 ListboxCM.Items.Add(dato);
             }
-
-            //For loop, hvor vi går gennem listen. Konvertere til string og ligger dem ind i list boxen. 
-            //ListboxCM.Items.Add("item1");
-            //ListboxCM.Items.Add("item2");
             
         }
     }

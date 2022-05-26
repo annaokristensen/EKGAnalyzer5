@@ -18,6 +18,7 @@ using LogicLayer;
 using DTO;
 using LiveCharts;
 using LiveCharts.Wpf;
+using LiveCharts.Wpf.Charts.Base;
 
 namespace PresentationLayer
 {
@@ -50,7 +51,7 @@ namespace PresentationLayer
             ekgObject = new EKGController();
             MyCollection = new SeriesCollection();
             EKGLine = new LineSeries();
-            EKGLine.Fill = Brushes.Transparent;
+            EKGLine.Fill = System.Windows.Media.Brushes.Transparent;
             EKGLine.PointGeometry = null;
 
             this.Hide();
@@ -80,15 +81,15 @@ namespace PresentationLayer
 
             for (int i = 0; i < 20; i++)
             {
-                testsignal[i] = 0;
+                testsignal[i] = 1.65;
             }
             for (int i = 20; i < 120; i++)
             {
-                testsignal[i] = 1;
+                testsignal[i] = 2.65;
             }
             for (int i = 120; i < testsignal.Length; i++)
             {
-                testsignal[i] = 0;
+                testsignal[i] = 1.65;
             }
 
 
@@ -115,12 +116,11 @@ namespace PresentationLayer
             {
                 EKGLine.Values.Add(specifikMaaling[i]);
             }
-
+            
             DataContext = this;
 
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Show();
-            
         }
 
         public string Cpr
@@ -170,28 +170,28 @@ namespace PresentationLayer
             //Styr på Analyze ekg
             if (ekgObject.AnalyzeEKG(ekg.CPR, ekg.MeasurementTime))
             {
-                TBAnalyse.Text = "Atrieflimren påvist";
+                TBAnalyse.Text = "Atrieflimren er \n påvist";
             }
             else
             {
-                TBAnalyse.Text = "Atrieflimren ikke påvist";
+                TBAnalyse.Text = "Atrieflimren er \n ikke påvist";
             }
 
             //GRID til EKG bliver lavet
             EKGAnalyzer.AxisX[0].MinValue = 0;
             EKGAnalyzer.AxisX[1].MinValue = 0;
-            EKGAnalyzer.AxisX[0].MaxValue = ekg.SampleRate;
-            EKGAnalyzer.AxisX[1].MaxValue = ekg.SampleRate;
+            EKGAnalyzer.AxisX[0].MaxValue = ekg.SampleRate*5;
+            EKGAnalyzer.AxisX[1].MaxValue = ekg.SampleRate*5;
 
             EKGAnalyzer.AxisX[0].Separator.Step = 0.04 / (1 / ekg.SampleRate);
             EKGAnalyzer.AxisX[1].Separator.Step = 0.2 / (1 / ekg.SampleRate);
 
-            EKGAnalyzer.AxisY[0].MinValue = -1;
-            EKGAnalyzer.AxisY[1].MinValue = -1;
+            EKGAnalyzer.AxisY[0].MinValue = 0;
+            EKGAnalyzer.AxisY[1].MinValue = 0;
             //Skal indstilles til 1.5 mV, eller hvad der cirka passer. Skal justeres og tilpasses senere 
             //når vi har målinger vi kan teste på
-            EKGAnalyzer.AxisY[0].MaxValue = 1.5;
-            EKGAnalyzer.AxisY[1].MaxValue = 1.5;
+            EKGAnalyzer.AxisY[0].MaxValue = 3.3;
+            EKGAnalyzer.AxisY[1].MaxValue = 3.3;
             EKGAnalyzer.AxisY[0].Separator.Step = 0.1;
             EKGAnalyzer.AxisY[1].Separator.Step = 0.5;
         }
@@ -208,11 +208,13 @@ namespace PresentationLayer
         {
             EKGAnalyzer.AxisX[0].MinValue = Slider.Value * ekg.SampleRate;
 
-            EKGAnalyzer.AxisX[0].MaxValue = (Slider.Value + 1) * ekg.SampleRate;
+            EKGAnalyzer.AxisX[0].MaxValue = (Slider.Value+2) * ekg.SampleRate;
 
             EKGAnalyzer.AxisX[1].MinValue = Slider.Value * ekg.SampleRate;
 
-            EKGAnalyzer.AxisX[1].MaxValue = (Slider.Value + 1) * ekg.SampleRate;
+            EKGAnalyzer.AxisX[1].MaxValue = (Slider.Value+2) * ekg.SampleRate;
         }
+
+       
     }
 }
