@@ -31,7 +31,7 @@
 
         <Label Content="CPR-nummer:" HorizontalAlignment="Left" Margin="0.333,4,0,0" VerticalAlignment="Top" FontSize="15" Height="30" Width="114" Grid.Column="2" FontWeight="Bold" Foreground="#FF3C3A3A" Grid.Row="5"/>
 
-        <Button x:Name="ButtonHent" Content="Hent måling" VerticalAlignment="Top" Height="28" Background="#FFBBC4CA"  Margin="9.333,10.333,18.667,0" Click="ButtonHent_Click" Grid.Column="3" HorizontalAlignment="Center
+        <Button x:Name="ButtonHent" Content="Hent data" VerticalAlignment="Top" Height="28" Background="#FFBBC4CA"  Margin="9.333,10.333,18.667,0" Click="ButtonHent_Click" Grid.Column="3" HorizontalAlignment="Center
                 " Foreground="#FF3C3A3A" FontSize="15" FontWeight="Bold" Grid.Row="6" Width="92" />
         <Label Content="Medarbejdernr:" HorizontalAlignment="Left" Margin="2.333,4.667,0,0" VerticalAlignment="Top" FontSize="15" Height="30" Width="124" FontWeight="Bold" Foreground="#FF3C3A3A" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2"/>
         <Label Content="Lægehus:" HorizontalAlignment="Left" Margin="0.333,6,0,0" VerticalAlignment="Top" FontSize="15" Height="30" Width="114" Grid.Column="2" FontWeight="Bold" Foreground="#FF3C3A3A" Grid.Row="2"/>
