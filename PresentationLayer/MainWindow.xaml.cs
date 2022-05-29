@@ -121,7 +121,10 @@ namespace PresentationLayer
             DataContext = this;
 
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            Show();
+            if(dato != null)
+            {
+                Show();
+            }
         }
 
         public string Cpr
