@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace DTO
 {
     public class Læge
+        //gemmer data med hensyn til lægen
     {
         public string Organisation { get; set; }
         public string ID { get; set; }

@@ -5,9 +5,10 @@ using DTO;
 namespace LogicLayer
 {
     public class Algoritme
+        //algoritme som beregner om der er tegn for atrieflimren i den foretagne måling
     {
-        private double PtakThreshold = 0.2;
-        private double RtakThreshold = 0.85;
+        private double PtakThreshold = 0.2; //genkender takker over 0.2
+        private double RtakThreshold = 0.85; //genkender takker over 0.85
         private bool belowThresholdPtak = true;
         private bool belowThresholdRtak = true;
         private int PtakCount = 0;

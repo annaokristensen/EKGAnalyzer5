@@ -33,8 +33,10 @@ namespace PresentationLayer
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
         private void ButtonHent_Click(object sender, RoutedEventArgs e)
+
         {
             if (TBCPR1.Text == ""||TBLaegehus1.Text==""||TBNR.Text=="")
+                //hvis en af tekstboxene, kommer en messagebox frem
             {
                 MessageBox.Show("Udfyld alle felter");
             }
@@ -42,6 +44,7 @@ namespace PresentationLayer
             {
                 bool patient = eKGcontrole.CPRTyped(TBCPR1.Text);
                 if (patient == true)
+                    //hvis find CPR-nummeret er fundet i den lokale databse, lukker vinduet
                 {
                     mainW.PatientOK = true;
                     mainW.Cpr = TBCPR1.Text;
@@ -50,6 +53,7 @@ namespace PresentationLayer
                     Close();
                 }
                 else
+                //hvis CPR-nummeret ikke blev fundet, kommer en messagebox frem
                 {
                     TBCPR1.Text = "";
                     MessageBox.Show("Ingen måling fundet til indtastet CPR-nummer");

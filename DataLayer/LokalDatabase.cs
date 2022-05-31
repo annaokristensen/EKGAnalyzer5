@@ -25,6 +25,7 @@ namespace DataLayer
             listid = new List<int>();
         }
         private SqlConnection OpenConnectionST
+            //oprettes forbindelsen til databasen
         {
             get
             {
@@ -74,6 +75,7 @@ namespace DataLayer
                 }
                 for (int i = 0, j = 0; i < bytesArr.Length; i += 8, j++)
                     list.Add(BitConverter.ToDouble(bytesArr, i));
+                //konverter måledata fra byte til double
             }
 
             ekg.EKGsamples = list;
@@ -97,6 +99,7 @@ namespace DataLayer
         }
 
         public List<DateTime> GetDateTimes(string cpr)
+//trækker dato ud af den lokale database og gemmer dem i en liste
         {
             SqlDataReader rdr;
             string selectString = "Select * from EKGLokal Where cpr_borger = '" + cpr +"'";
@@ -114,24 +117,27 @@ namespace DataLayer
             return listDT;
         }
         public bool isUserRegistered(string cpr)
+            //checker om der forligger data for det indtastede CPR-nummer
         {
             SqlDataReader rdr;
-            //SqlConnection er typen til variablen conn. Er fundet ved at skrive var conn, inden. 
-            /*SqlConnection con = connection;*/ //tager fat i connection under proppertyen, så vi holder fast i den samme connection. Vi sender den connection ind til vores Sqlcommand.
-            string selectString = "Select * from EKGLokal Where cpr_borger = '" + cpr+"'"; //Her ligger min forespørgelse. $ er en template streng, der gør at vi kan skrive midt i strengen.
+          
+     
+            string selectString = "Select * from EKGLokal Where cpr_borger = '" + cpr+"'"; //Her ligger forespørgelsen i databasen.
             //string selectString = "Select * from EKGLokal Where ekgid = " + 15;
-            bool isUserFound = false; // bool, fordi det er retur værdien i en metoden ovenfor. 
+            bool isUserFound = false; 
 
             using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
             {
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
-                { //Read metoden returnere selv om den er true eller false. 
+                {  
                     isUserFound = true;
                 }
             }
             
             return isUserFound;
+
+
         }
         
     }

@@ -40,6 +40,7 @@ namespace PresentationLayer
         
 
         private void ButtonCMHent_Click(object sender, RoutedEventArgs e)
+            //hvis der er blevet valgt en måling, lukkker vinduet. Hvis ikke, bliver der vist en messagebox.
         {
             if (ListboxCM.SelectedValue == null)
             {
@@ -55,7 +56,7 @@ namespace PresentationLayer
 
         private void CMWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //Vi kalder metoden fra vores logiklag (en list med datoerne for målingerne på patienten). Laver en for løkke, hvor vi adder datorerme. for loop som tilføjer en dato af typen string
+            //Vi kalder metoden fra vores logiklag (en list med datoerne for målingerne på patienten). Genererer  en for-loop som tilføjer en dato af typen string
 
             TBCPRCM.Text = mainWindow.Cpr;
 

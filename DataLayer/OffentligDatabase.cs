@@ -20,6 +20,7 @@ namespace DataLayer
         }
 
         private SqlConnection OpenConnectionST
+            //opretter en forbindelse til databasen
         {
             get
             {
@@ -31,6 +32,7 @@ namespace DataLayer
             }
         }
         public void SendToDatabase(EKG ekg, Læge læge)
+            //indsætter det ønskede data i den offentlige database
         {
             string insertStringParam2 =
                 @"INSERT INTO EKGMAELING (dato, antalmaalinger, sfp_ansvrmedarbjnr, sfp_ans_org, borger_cprnr) OUTPUT INSERTED.ekgmaaleid VALUES(@dato, 1, @Id, @org, @cpr)";
