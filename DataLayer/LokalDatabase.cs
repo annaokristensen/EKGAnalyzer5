@@ -12,9 +12,9 @@ namespace DataLayer
 {
     public class LokalDatabase
     {
-        private SqlConnection connection;
-        private SqlDataReader reader;
-        private SqlCommand command;
+        private SqlConnection con;
+        private SqlDataReader rdr;
+        private SqlCommand cmd;
         private const string db = "EKG_Lokal";
         private List<DateTime> listDT;
         private List<int> listid;
@@ -29,7 +29,7 @@ namespace DataLayer
         {
             get
             {
-                var con = new SqlConnection($@"Data Source=BBLAP18\SQLEXPRESS;Initial Catalog=EKG_Lokal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                con = new SqlConnection($@"Data Source=BBLAP18\SQLEXPRESS;Initial Catalog=EKG_Lokal;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                 //SqlConnection con = new SqlConnection($@"Data Source=172.20.10.4\SQLEXPRESS;Initial Catalog=testprojekt;User ID =Login; Password=1234;Integrated Security=False;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                 con.Open();
                 return con;
@@ -47,9 +47,7 @@ namespace DataLayer
             //BLOB laves til liste
             byte[] bytesArr = new byte[800];
             List<double> list = new List<double>();
-            SqlDataReader rdr;
-
-           
+            
             int id=0;
 
             for (int i = 0; i < listDT.Count; i++)
@@ -66,7 +64,7 @@ namespace DataLayer
 
             string selectString = "Select * from dbo.EKGLokal where ekgid = "+ id; 
 
-            using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
+            using (cmd = new SqlCommand(selectString, OpenConnectionST))
             {
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
@@ -81,7 +79,7 @@ namespace DataLayer
             ekg.EKGsamples = list;
 
             //Resten af informationerne udtrækkes
-            using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
+            using (cmd = new SqlCommand(selectString, OpenConnectionST))
             {
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())
@@ -101,10 +99,9 @@ namespace DataLayer
         public List<DateTime> GetDateTimes(string cpr)
 //trækker dato ud af den lokale database og gemmer dem i en liste
         {
-            SqlDataReader rdr;
             string selectString = "Select * from EKGLokal Where cpr_borger = '" + cpr +"'";
             //string selectString = "Select * from EKGLokal Where ekgid = " + 15;
-            using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
+            using (cmd = new SqlCommand(selectString, OpenConnectionST))
             {
                 rdr = cmd.ExecuteReader();
                 while (rdr.Read())
@@ -119,14 +116,11 @@ namespace DataLayer
         public bool isUserRegistered(string cpr)
             //checker om der forligger data for det indtastede CPR-nummer
         {
-            SqlDataReader rdr;
-          
-     
             string selectString = "Select * from EKGLokal Where cpr_borger = '" + cpr+"'"; //Her ligger forespørgelsen i databasen.
             //string selectString = "Select * from EKGLokal Where ekgid = " + 15;
             bool isUserFound = false; 
 
-            using (SqlCommand cmd = new SqlCommand(selectString, OpenConnectionST))
+            using (cmd = new SqlCommand(selectString, OpenConnectionST))
             {
                 rdr = cmd.ExecuteReader();
                 if (rdr.Read())

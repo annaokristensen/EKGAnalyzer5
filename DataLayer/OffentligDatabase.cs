@@ -10,8 +10,8 @@ namespace DataLayer
 {
     public class OffentligDatabase
     {
-        private SqlConnection connection;
-        private SqlCommand command;
+        private SqlConnection con;
+        private SqlCommand cmd;
         private const string db = "EKG_Offentlig";
 
         public OffentligDatabase()
@@ -25,7 +25,7 @@ namespace DataLayer
             get
             {
                 //var con = new SqlConnection($@"Data Source=LAPTOP-S4DIHSKB\SQLEXPRESS;Initial Catalog=offentlig;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-                var con = new SqlConnection($@"Data Source=BBLAP18\SQLEXPRESS;Initial Catalog=EKG_Offentlig;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                con = new SqlConnection($@"Data Source=BBLAP18\SQLEXPRESS;Initial Catalog=EKG_Offentlig;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
                 con.Open();
                 return con;
@@ -41,7 +41,7 @@ namespace DataLayer
             string org = læge.Organisation;
             string Id = læge.ID;
 
-            using (SqlCommand cmd = new SqlCommand(insertStringParam2, OpenConnectionST))
+            using (cmd = new SqlCommand(insertStringParam2, OpenConnectionST))
             {
                 cmd.Parameters.AddWithValue("@dato", dato);
                 cmd.Parameters.AddWithValue("@org", org);
@@ -61,7 +61,7 @@ namespace DataLayer
 
             string insertStringParam = @"INSERT INTO dbo.EKGDATA (raa_data, samplerate_hz, interval_sec, data_format, bin_eller_tekst, maaleformat_type, start_tid) OUTPUT INSERTED.ekgdataid  VALUES(@data, @sampleRate, @intervalSec, @dataformat, @binEllerTekst, @maalformatType, @starttid)";
 
-            using (SqlCommand cmd = new SqlCommand(insertStringParam, OpenConnectionST))
+            using (cmd = new SqlCommand(insertStringParam, OpenConnectionST))
             {
                 cmd.Parameters.AddWithValue("@starttid", starttid);
                 cmd.Parameters.AddWithValue("@sampleRate", sampleRate);
