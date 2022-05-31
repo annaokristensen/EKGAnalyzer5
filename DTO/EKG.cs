@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace DTO
 {
     public class EKG
+        //DTO som gemmer nedstående data i forhold til ekg-målingen
     {
         public List<double> EKGsamples { get; set; }
         public double SampleRate { get; set; }
@@ -18,6 +19,7 @@ namespace DTO
         {}
 
         public EKG(List<double> ekgSamples, double sampleRate, int intervalSec,string dataFormat, string binEllerTekst, string maaleformatType, string cpr, DateTime measurementTime)
+            
         {
             EKGsamples = ekgSamples;
             SampleRate = sampleRate;

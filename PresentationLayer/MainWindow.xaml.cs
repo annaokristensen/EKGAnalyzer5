@@ -60,6 +60,7 @@ namespace PresentationLayer
             findPatientW.ShowDialog();
 
             if (PatientOK == true)
+                //hvis CPR-nummeret er fundet i den lokale database, åbner chooseMeassurementvinduet op.
             {
                 chooseMeassurementW = new CMWindow(this, ekgObject);
                 chooseMeassurementW.ShowDialog();

@@ -20,17 +20,20 @@ namespace LogicLayer
             offentligDatabase = new OffentligDatabase();
         }
         public bool CPRTyped(string cpr)
+            //returnerer om det indtastede CPR-nummer er true eller false
         {
             return EKGresult.isUserRegistered(cpr);
             
         }
 
         public List<DateTime> getListDateTime(string cpr)
+            //returner en liste af datetimes
         {
             return EKGresult.GetDateTimes(cpr);
         }
 
         public EKG GetEKG(string cpr, DateTime dt)
+            //returner måledata for et bestemt CPR-nummer og dato
         {
             EKG ekg = EKGresult.GetEKG(cpr, dt);
 
@@ -38,6 +41,7 @@ namespace LogicLayer
         }
 
         public bool AnalyzeEKG(string cpr, DateTime dt)
+            //retunerer algoritmens analyse
         {
             EKG ekg = EKGresult.GetEKG(cpr, dt);
 
@@ -45,6 +49,7 @@ namespace LogicLayer
         }
 
         public void SendEKG(EKG ekg, Læge læge)
+            //Anna kommentar
         {
             offentligDatabase.SendToDatabase(ekg,læge);
 
