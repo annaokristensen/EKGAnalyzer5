@@ -95,6 +95,7 @@ namespace DataLayer
         }
 
         public List<DateTime> GetDateTimes(string cpr)
+//trækker dato
         {
             SqlDataReader rdr;
             string selectString = "Select * from EKGLokal Where cpr_borger = '" + cpr +"'";
