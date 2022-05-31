@@ -12,6 +12,14 @@ namespace TestPRogram
     {
         static void Main(string[] args)
         {
+            LokalDatabase lokalDatabase = new LokalDatabase();
+
+            EKG ekg1 = lokalDatabase.GetEKG("1234567890", new DateTime(2021, 12, 1));
+
+            Console.WriteLine(ekg1.CPR);
+            Console.WriteLine(ekg1.IntervalSec);
+
+
 
             List<double> liste = new List<double>();
             liste.Add(1);

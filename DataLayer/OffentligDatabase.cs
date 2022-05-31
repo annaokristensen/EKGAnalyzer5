@@ -23,7 +23,9 @@ namespace DataLayer
         {
             get
             {
-                var con = new SqlConnection($@"Data Source=LAPTOP-S4DIHSKB\SQLEXPRESS;Initial Catalog=offentlig;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                //var con = new SqlConnection($@"Data Source=LAPTOP-S4DIHSKB\SQLEXPRESS;Initial Catalog=offentlig;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                var con = new SqlConnection($@"Data Source=BBLAP18\SQLEXPRESS;Initial Catalog=EKG_Offentlig;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
                 con.Open();
                 return con;
             }
@@ -67,7 +69,7 @@ namespace DataLayer
                 cmd.Parameters.AddWithValue("@maalformatType", maaleformatType);
 
                 cmd.Parameters.AddWithValue("@data", data.ToArray().SelectMany(value => BitConverter.GetBytes(value)).ToArray());
-                long id1 = (long)cmd.ExecuteScalar(); //Returns the identity of the new tuple/record 64 bit/8 bytes
+                int id1 = (int)cmd.ExecuteScalar(); //Returns the identity of the new tuple/record 64 bit/8 bytes
                 //HVad gør det her?
             }
 
