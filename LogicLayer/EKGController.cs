@@ -49,7 +49,7 @@ namespace LogicLayer
         }
 
         public void SendEKG(EKG ekg, Læge læge)
-            //Anna kommentar
+            //Ud fra de to DTO-klasser der er parametere, sendes målingen til datalaget, hvor den sendes til den offentlige database.
         {
             offentligDatabase.SendToDatabase(ekg,læge);
 

@@ -55,6 +55,7 @@ namespace PresentationLayer
             EKGLine.LineSmoothness = 0;
             EKGLine.PointGeometry = null;
 
+            //MainWindow skjules
             this.Hide();
             findPatientW = new FPWindow(this, ekgObject);
             findPatientW.ShowDialog();
@@ -63,19 +64,20 @@ namespace PresentationLayer
                 //hvis CPR-nummeret er fundet i den lokale database, åbner chooseMeassurementvinduet op.
             {
                 chooseMeassurementW = new CMWindow(this, ekgObject);
-                chooseMeassurementW.ShowDialog();
+                chooseMeassurementW.ShowDialog(); //CMWindow vises.
                 if (string.IsNullOrEmpty(Dato))
                 {
                     Close();
                 }
             }
            
-            ekg = ekgObject.GetEKG(Cpr, Convert.ToDateTime(Dato));
+            ekg = ekgObject.GetEKG(Cpr, Convert.ToDateTime(Dato)); //det valgte EKG i CMWindow og udfra CPR hentes.
 
             labelformatter = x => (x / ekg.SampleRate + Slider.Value).ToString();
             labelformatter1 = x => x.ToString("F1");
+            //akserne på LiveChart defineres. 
 
-            double[] testsignal = new double[TEST_SIGNAL_LENGTH];
+            double[] testsignal = new double[TEST_SIGNAL_LENGTH]; //Test signalet, som skal vises på EKG dannes.
 
             for (int i = 0; i < 20; i++)
             {
@@ -92,13 +94,9 @@ namespace PresentationLayer
 
 
             double[] specifikMaaling = new double[ekg.EKGsamples.Count];
-
-            //double[] specifikMaaling = new double[5000];
-
+            
             for (int i = 0; i < specifikMaaling.Length; i++)
             {
-                //specifikMaaling[i] = (i * 0.01) % 1;
-
                 specifikMaaling[i] = ekg.EKGsamples[i];
             }
 
@@ -114,12 +112,14 @@ namespace PresentationLayer
             {
                 EKGLine.Values.Add(specifikMaaling[i]);
             }
+
+            //Test signalet og den specifikke EKG-måling lægges ind på i grafens værdier. 
             
             DataContext = this;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            if(dato != null)
+            if(dato != null) //Hvis man vælger at lukke programmet i CMWindow eller FPWindow skal MainWindow ikke vises. 
             {
                 Show();
             }
@@ -131,7 +131,7 @@ namespace PresentationLayer
             set
             {
                 cpr = value;
-                TBCPR2.Text = value;
+                TBCPR2.Text = value; //TB skal vise CPR-nummer i mainwindow
 
             }
         }
@@ -150,7 +150,7 @@ namespace PresentationLayer
             get => dato; set
             {
                 dato = value;
-                TBMaaling.Text = value;
+                TBMaaling.Text = value; //TB skal vise Dato i mainwindow
             }
         }
         public string Laegehus
@@ -159,7 +159,7 @@ namespace PresentationLayer
             set
             {
                 laegehus = value;
-                TBLaegehus2.Text = value;
+                TBLaegehus2.Text = value; //TB skal vise lægehuset i mainwindow
             }
         }
 
@@ -169,7 +169,7 @@ namespace PresentationLayer
             TBLaegehus2.Text = laegehus;
 
 
-            //Styr på Analyze ekg
+            //EKG-analyze udføres på EKG-objektet. Ud fra udfaldet vises analysesvaret i TB. 
             if (ekgObject.AnalyzeEKG(ekg.CPR, ekg.MeasurementTime))
             {
                 TBAnalyse.Text = "Tegn på \n atrieflimren";
@@ -190,8 +190,6 @@ namespace PresentationLayer
 
             EKGAnalyzer.AxisY[0].MinValue = -1;
             EKGAnalyzer.AxisY[1].MinValue = -1;
-            //Skal indstilles til 1.5 mV, eller hvad der cirka passer. Skal justeres og tilpasses senere 
-            //når vi har målinger vi kan teste på
             EKGAnalyzer.AxisY[0].MaxValue = 2;
             EKGAnalyzer.AxisY[1].MaxValue = 2;
             EKGAnalyzer.AxisY[0].Separator.Step = 0.1;
@@ -200,14 +198,19 @@ namespace PresentationLayer
 
         private void ButtonSend_Click(object sender, RoutedEventArgs e)
         {
+            //DTO-objekt for lægen oprettes.
             Læge læge = new Læge(Laegehus, Medarbejdernummer);
+
+            //EKG sendes til offentlig database gennem logik laget
             ekgObject.SendEKG(ekg,læge);
 
+            //En tekstbox vises, at målingen er sendt korrekt
             MessageBox.Show("Måling er sendt til offentlig database");
         }
 
         private void Slider_ValueChanged(object sender, DragCompletedEventArgs e)
         {
+            //Udfra sliderens værdier ændres værdierne på x-aksen på LiveChart
             EKGAnalyzer.AxisX[0].MinValue = Slider.Value * ekg.SampleRate;
 
             EKGAnalyzer.AxisX[0].MaxValue = (Slider.Value+2) * ekg.SampleRate;
