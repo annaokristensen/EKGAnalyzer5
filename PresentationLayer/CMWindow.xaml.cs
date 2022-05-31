@@ -21,16 +21,12 @@ namespace PresentationLayer
     /// Interaction logic for CMWindow.xaml
     /// </summary>
     public partial class CMWindow : Window
-    {  
-       
-        public object SelectedItem { get; set; }
-       
+    {
+
         private EKGController eKGcontrole;
        
         private MainWindow mainWindow;
 
-        public bool PatientOK { get; set; }
-      
 
         public CMWindow(MainWindow mainWindow, EKGController ekgControle)
         {
@@ -71,5 +67,6 @@ namespace PresentationLayer
             }
             
         }
+
     }
 }

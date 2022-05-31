@@ -43,7 +43,7 @@ namespace PresentationLayer
         public bool PatientOK { get; set; }
         public Func<double, string> labelformatter { get; set; }
         public Func<double, string> labelformatter1 { get; set; }
-        
+      
 
         public MainWindow()
         {
@@ -59,7 +59,6 @@ namespace PresentationLayer
             findPatientW = new FPWindow(this, ekgObject);
             findPatientW.ShowDialog();
 
-            //den følgende kode er blot for at teste vores loginvindue. Vi skal senere ændre det til, at patienten er blevet fundet i tabellen.
             if (PatientOK == true)
             {
                 chooseMeassurementW = new CMWindow(this, ekgObject);
@@ -69,10 +68,7 @@ namespace PresentationLayer
                     Close();
                 }
             }
-            else
-            {
-                Close();
-            }
+           
             ekg = ekgObject.GetEKG(Cpr, Convert.ToDateTime(Dato));
 
             labelformatter = x => (x / ekg.SampleRate + Slider.Value).ToString();
@@ -119,9 +115,13 @@ namespace PresentationLayer
             }
             
             DataContext = this;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            Show();
+            if(dato != null)
+            {
+                Show();
+            }
         }
 
         public string Cpr

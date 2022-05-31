@@ -10,26 +10,15 @@ namespace LogicLayer
 {
     public class EKGController
     {
-        //private LokalDatabase lokalDatabase;
         private Algoritme algoritme;
         private LokalDatabase EKGresult;
         private OffentligDatabase offentligDatabase;
-
         public EKGController()
         {
-            //lokalDatabase = new LokalDatabase();
             algoritme = new Algoritme();
             EKGresult = new LokalDatabase();
             offentligDatabase = new OffentligDatabase();
-
         }
-
-        //public void CPRTyped(int CPRNumber)
-        //{
-        //    bool EKGresult = algoritme.Analyze(lokalDatabase.GetEKG());
-
-        //}
-
         public bool CPRTyped(string cpr)
         {
             return EKGresult.isUserRegistered(cpr);

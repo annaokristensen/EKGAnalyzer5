@@ -16,11 +16,13 @@ namespace DataLayer
         private SqlDataReader reader;
         private SqlCommand command;
         private const string db = "EKG_Lokal";
-        List<DateTime> listDT = new List<DateTime>();
-        List<int> listid = new List<int>();
+        private List<DateTime> listDT;
+        private List<int> listid;
 
         public LokalDatabase()
         {
+            listDT = new List<DateTime>();
+            listid = new List<int>();
         }
         private SqlConnection OpenConnectionST
         {
