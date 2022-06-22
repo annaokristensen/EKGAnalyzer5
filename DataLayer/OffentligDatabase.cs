@@ -72,7 +72,6 @@ namespace DataLayer
 
                 cmd.Parameters.AddWithValue("@data", data.ToArray().SelectMany(value => BitConverter.GetBytes(value)).ToArray());
                 int id1 = (int)cmd.ExecuteScalar(); //Returns the identity of the new tuple/record 64 bit/8 bytes
-                //HVad gør det her?
             }
 
         }

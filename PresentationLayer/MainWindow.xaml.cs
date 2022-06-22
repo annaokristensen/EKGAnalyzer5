@@ -117,8 +117,7 @@ namespace PresentationLayer
             
             DataContext = this;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            
             if(dato != null) //Hvis man vælger at lukke programmet i CMWindow eller FPWindow skal MainWindow ikke vises. 
             {
                 Show();
