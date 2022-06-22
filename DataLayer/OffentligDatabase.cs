@@ -25,7 +25,7 @@ namespace DataLayer
             get
             {
                 //var con = new SqlConnection($@"Data Source=LAPTOP-S4DIHSKB\SQLEXPRESS;Initial Catalog=offentlig;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-                con = new SqlConnection($@"Data Source=BBLAP18\SQLEXPRESS;Initial Catalog=EKG_Offentlig;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                con = new SqlConnection($@"Data Source=LAPTOP-S4DIHSKB\SQLEXPRESS;Initial Catalog=EKG_Offentlig;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
                 con.Open();
                 return con;
